@@ -24,6 +24,7 @@ const StackNavigator = () => {
           component={HomeScreen}
           options={{
             tabBarActiveTintColor: 'green',
+            headerShown: false,
             tabBarIcon: ({focused}) =>
               focused ? (
                 <Ionicons name="home-outline" size={30} color="green" />
@@ -37,6 +38,7 @@ const StackNavigator = () => {
           component={PlayScreen}
           options={{
             tabBarActiveTintColor: 'green',
+            headerShown: false,
             tabBarIcon: ({focused}) =>
               focused ? (
                 <AntDesign name="addusergroup" size={24} color="green" />
@@ -50,6 +52,7 @@ const StackNavigator = () => {
           component={BookScreen}
           options={{
             tabBarActiveTintColor: 'green',
+            headerShown: false,
             tabBarIcon: ({focused}) =>
               focused ? (
                 <SimpleLineIcons name="book-open" size={24} color="green" />
@@ -63,6 +66,7 @@ const StackNavigator = () => {
           component={ProfileScreen}
           options={{
             tabBarActiveTintColor: 'green',
+            headerShown: false,
             tabBarIcon: ({focused}) =>
               focused ? (
                 <Ionicons name="person-outline" size={24} color="green" />

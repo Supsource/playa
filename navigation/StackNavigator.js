@@ -10,7 +10,7 @@ import ProfileScreen from '../screens/ProfileScreen';
 import {NavigationContainer} from '@react-navigation/native';
 import AntDesign from 'react-native-vector-icons/AntDesign';
 import SimpleLineIcons from 'react-native-vector-icons/SimpleLineIcons';
-import MaterialIcons from 'react-native-vector-icons/MaterialIcons';
+
 
 const StackNavigator = () => {
   const Stack = createNativeStackNavigator();
@@ -24,7 +24,6 @@ const StackNavigator = () => {
           component={HomeScreen}
           options={{
             tabBarActiveTintColor: 'green',
-            headerShown: false,
             tabBarIcon: ({focused}) =>
               focused ? (
                 <Ionicons name="home-outline" size={30} color="green" />

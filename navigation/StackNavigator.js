@@ -10,6 +10,7 @@ import ProfileScreen from '../screens/ProfileScreen';
 import {NavigationContainer} from '@react-navigation/native';
 import AntDesign from 'react-native-vector-icons/AntDesign';
 import SimpleLineIcons from 'react-native-vector-icons/SimpleLineIcons';
+import VenueInfoScreen from '../screens/VenueInfoScreen';
 
 
 const StackNavigator = () => {
@@ -88,6 +89,11 @@ const StackNavigator = () => {
         <Stack.Screen
           name="Main"
           component={ButtonTabs}
+          options={{headerShown: false}}
+        />
+        <Stack.Screen
+          name="Venue"
+          component={VenueInfoScreen}
           options={{headerShown: false}}
         />
       </Stack.Navigator>

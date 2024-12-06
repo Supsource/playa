@@ -48,7 +48,7 @@ const VenueInfoScreen = () => {
 
                 gap: 5,
               }}>
-              <Ionicons name="ios-location-outline" size={24} color="black" />
+              <Ionicons name="location" size={24} color="black" />
               <Text style={{fontSize: 14, width: '80%', fontWeight: '500'}}>
                 {route.params.location}
               </Text>

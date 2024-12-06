@@ -191,7 +191,7 @@ const HomeScreen = () => {
         </View>
 
         <View>
-          <View>
+          <View style={{marginLeft: "auto", marginRight:"auto"}}>
             <Image 
             style={{
               width: 120, height: 70, resizeMode: 'contain'
@@ -201,6 +201,7 @@ const HomeScreen = () => {
             }}
             />
           </View>
+          <Text style={{color: "gray", textAlign: 'center'}}>Your favoraite Sports community app</Text>
         </View>
     </ScrollView>
   )

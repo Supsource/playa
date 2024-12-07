@@ -5,7 +5,6 @@ import Entypo from 'react-native-vector-icons/Entypo';
 import AntDesign from 'react-native-vector-icons/AntDesign';
 import MaterialIcons from 'react-native-vector-icons/MaterialIcons';
 import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons';
-
 const ProfileScreen = () => {
   return (
     <SafeAreaView>
@@ -130,7 +129,7 @@ const ProfileScreen = () => {
                   alignItems: 'center',
                 }}>
                 <MaterialIcons
-                  name="energy-savings-leaf"
+                  name="security"
                   size={24}
                   color={'green'}
                 />
@@ -161,7 +160,7 @@ const ProfileScreen = () => {
                   justifyContent: 'center',
                   alignItems: 'center',
                 }}>
-                <AntDesign name="calendar" size={24} color={'green'} />
+                <MaterialIcons name="discount" size={24} color={'green'} />
               </View>
 
               <View style={{}}>
@@ -194,7 +193,7 @@ const ProfileScreen = () => {
                   justifyContent: 'center',
                   alignItems: 'center',
                 }}>
-                <Ionicons name="people-outline" size={24} color={'green'} />
+                <MaterialIcons name="book" size={24} color={'green'} />
               </View>
 
               <View style={{}}>
@@ -222,7 +221,7 @@ const ProfileScreen = () => {
                   justifyContent: 'center',
                   alignItems: 'center',
                 }}>
-                <AntDesign name="book" size={24} color={'green'} />
+                <MaterialIcons name="money" size={24} color={'green'} />
               </View>
 
               <View style={{}}>
@@ -259,7 +258,7 @@ const ProfileScreen = () => {
                   alignItems: 'center',
                 }}>
                 <MaterialIcons
-                  name="energy-savings-leaf"
+                  name="support"
                   size={24}
                   color={'green'}
                 />
@@ -296,7 +295,7 @@ const ProfileScreen = () => {
                   alignItems: 'center',
                 }}>
                 <MaterialIcons
-                  name="energy-savings-leaf"
+                  name="logout"
                   size={24}
                   color={'green'}
                 />

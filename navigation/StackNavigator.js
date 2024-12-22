@@ -11,6 +11,13 @@ import {NavigationContainer} from '@react-navigation/native';
 import AntDesign from 'react-native-vector-icons/AntDesign';
 import SimpleLineIcons from 'react-native-vector-icons/SimpleLineIcons';
 import VenueInfoScreen from '../screens/VenueInfoScreen';
+import StartScreen from '../screens/StartScreen';
+import LoginScreen from '../screens/LoginScreen';
+import RegisterScreen from '../screens/RegisterScreen';
+import PasswordScreen from '../screens/PasswordScreen';
+import NameScreen from '../screens/NameScreen';
+import SelectImgScreen from '../screens/SelectImgScreen';
+import PreFinalScreen from '../screens/PreFinalScreen';
 
 
 const StackNavigator = () => {
@@ -80,7 +87,15 @@ const StackNavigator = () => {
   }
 
   const AuthStack = () => {
-    return <Stack.Navigator></Stack.Navigator>;
+    return <Stack.Navigator>
+      <Stack.Screen name="Start" component={StartScreen} options={{headerShown: false}} />
+      <Stack.Screen name="Login" component={LoginScreen} options={{headerShown: false}} />
+      <Stack.Screen name="Register" component={RegisterScreen} options={{headerShown: false}} />
+      <Stack.Screen name="Password" component={PasswordScreen} options={{headerShown: false}} />
+      <Stack.Screen name="Name" component={NameScreen} options={{headerShown: false}} />
+      <Stack.Screen name="Image" component={SelectImgScreen} options={{headerShown: false}} />
+      <Stack.Screen name="PreFinal" component={PreFinalScreen} options={{headerShown: false}} />
+    </Stack.Navigator>;
   };
 
   function MainStack() {

@@ -4,7 +4,7 @@ import { useNavigation } from '@react-navigation/native'
 import Ionicons from 'react-native-vector-icons/Ionicons';
 import AntDesign from 'react-native-vector-icons/AntDesign';
 
-const HomeScreen = () => {
+const HomeScreen = ({ items }) => {
   const navigation = useNavigation();
   useLayoutEffect(() => {
     navigation.setOptions({
@@ -191,17 +191,15 @@ const HomeScreen = () => {
         </View>
 
         <View>
-          <View style={{marginLeft: "auto", marginRight:"auto"}}>
+          <View style={styles.logoContainer}>
             <Image 
-            style={{
-              width: 120, height: 70, resizeMode: 'contain'
-            }}
-            source={{
-              uri: '' // Logo will be added here
-            }}
+              style={styles.logo}
+              source={{
+                uri: '' // Logo will be added here
+              }}
             />
           </View>
-          <Text style={{color: "gray", textAlign: 'center'}}>Your favoraite Sports community app</Text>
+          <Text style={styles.description}>Your favorite Sports community app</Text>
         </View>
     </ScrollView>
   )
@@ -209,4 +207,21 @@ const HomeScreen = () => {
 
 export default HomeScreen
 
-const styles = StyleSheet.create({})
+const styles = StyleSheet.create({
+  itemContainer: {
+    // Add your styles here
+  },
+  logoContainer: {
+    marginLeft: 'auto',
+    marginRight: 'auto',
+  },
+  logo: {
+    width: 120,
+    height: 70,
+    resizeMode: 'contain',
+  },
+  description: {
+    color: 'gray',
+    textAlign: 'center',
+  },
+});

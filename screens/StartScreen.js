@@ -1,4 +1,4 @@
-import { StyleSheet, View, Image } from 'react-native';
+import { StyleSheet, View, Image, Text, Pressable } from 'react-native';
 import React, { useEffect, useRef } from 'react';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import MapView, { Marker } from 'react-native-maps';
@@ -94,6 +94,7 @@ const StartScreen = () => {
   }, [circularPoints]);
 
   return (
+    <>
     <SafeAreaView>
       <MapView
         ref={mapView}
@@ -119,10 +120,53 @@ const StartScreen = () => {
           );
         })}
       </MapView>
+      <View style={{marginTop: 35, justifyContent: 'center', alignItems: 'center'}}>
+        <Text style={{fontSize: 20, fontWeight: "500", width: "50%", textAlign: 'center'}}>Find the players in your neighborhood</Text>
+        <Text style={{marginTop: 20, color: 'grey', fontSize: 15}}>"Just like you did as a kid"</Text>
+      </View>
+      <Pressable style={{marginTop: 40, justifyContent: 'center', alignItems: 'center'}}>
+        <Text style={{fontSize: 16, color:'grey'}}>
+          Already have an account? <Text style={{color: 'blue'}}>Sign in</Text>
+        </Text>
+      </Pressable>
+      <View style={{ justifyContent: 'center', alignItems: 'center', marginTop: 25 }}>
+        <Image
+          style={{ width: 110, height: 60, resizeMode: 'contain' }}
+          source={{ uri: 'https://raw.githubusercontent.com/Supsource/playa/refs/heads/main/medias/Playa.png?token=GHSAT0AAAAAACYQFB3WNEYPTAATVWTQVGBKZ3JRSHA' }}
+        />
+      </View>
     </SafeAreaView>
+    <View style={styles.footerContainer}>
+      <Pressable style={styles.button}>
+        <Text style={styles.buttonText}>READY, SET & GO</Text>
+      </Pressable>
+    </View>
+    </>
   );
 };
 
 export default StartScreen;
 
-const styles = StyleSheet.create({});
+const styles = StyleSheet.create({
+  footerContainer: {
+    padding: 10,
+    // backgroundColor: 'white',
+    marginTop: 'auto',
+    justifyContent: 'center',
+    alignItems: 'center',
+  },
+  button: {
+    backgroundColor: '#1ec921',
+    paddingVertical: 12,
+    paddingHorizontal: 20,
+    borderRadius: 7,
+    marginBottom: 10,
+    justifyContent: 'center',
+    alignItems: 'center',
+  },
+  buttonText: {
+    fontSize: 16,
+    color: 'white',
+    fontWeight: 'bold',
+  },
+});

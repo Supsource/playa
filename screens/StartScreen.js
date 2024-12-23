@@ -2,8 +2,10 @@ import { StyleSheet, View, Image, Text, Pressable } from 'react-native';
 import React, { useEffect, useRef } from 'react';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import MapView, { Marker } from 'react-native-maps';
+import { useNavigation } from '@react-navigation/native';
 
 const StartScreen = () => {
+  const navigation = useNavigation();
   const mapView = useRef(null);
   const users = [
     {
@@ -137,7 +139,7 @@ const StartScreen = () => {
       </View>
     </SafeAreaView>
     <View style={styles.footerContainer}>
-      <Pressable style={styles.button}>
+      <Pressable onPress={() => navigation.navigate("Register")} style={styles.button}>
         <Text style={styles.buttonText}>READY, SET & GO</Text>
       </Pressable>
     </View>

@@ -1,4 +1,4 @@
-import {StyleSheet, Text, View} from 'react-native';
+import {StyleSheet} from 'react-native';
 import React from 'react';
 import {createNativeStackNavigator} from '@react-navigation/native-stack';
 import {createBottomTabNavigator} from '@react-navigation/bottom-tabs';
@@ -18,7 +18,6 @@ import PasswordScreen from '../screens/PasswordScreen';
 import NameScreen from '../screens/NameScreen';
 import SelectImgScreen from '../screens/SelectImgScreen';
 import PreFinalScreen from '../screens/PreFinalScreen';
-
 
 const StackNavigator = () => {
   const Stack = createNativeStackNavigator();
@@ -117,7 +116,7 @@ const StackNavigator = () => {
 
   return (
     <NavigationContainer>
-      <MainStack />
+      <AuthStack />
     </NavigationContainer>
   );
 };

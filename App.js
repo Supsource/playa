@@ -61,7 +61,9 @@ function App() {
   };
 
   return (
-    <StackNavigator />
+    <AuthProvider>
+      <StackNavigator />
+    </AuthProvider>
   );
 }
 

@@ -23,7 +23,7 @@ const NameScreen = () => {
     getRegistrationProgress('Name').then(progressData => {
       if (progressData) {
         setFirstName(progressData.firstName || '');
-        setLastName(progressData.lastName);
+        setLastName(progressData.lastName || '');
       }
     });
   }, []);

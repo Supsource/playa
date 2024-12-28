@@ -21,6 +21,7 @@ import PreFinalScreen from '../screens/PreFinalScreen';
 import {AuthContext} from '../AuthContext';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import {useContext} from 'react';
+import CreateActivity from '../screens/CreateActivity';
 
 const StackNavigator = () => {
   const Stack = createNativeStackNavigator();
@@ -112,6 +113,11 @@ const StackNavigator = () => {
         <Stack.Screen
           name="Venue"
           component={VenueInfoScreen}
+          options={{headerShown: false}}
+        />
+        <Stack.Screen
+          name="Create"
+          component={CreateActivity}
           options={{headerShown: false}}
         />
       </Stack.Navigator>

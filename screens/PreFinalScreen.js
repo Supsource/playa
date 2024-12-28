@@ -1,48 +1,19 @@
-import {Pressable, SafeAreaView, StyleSheet, Text, View} from 'react-native';
-import React, {useEffect, useContext, useState} from 'react';
-import { useNavigation } from '@react-navigation/native';
+import { Pressable, View, Text, SafeAreaView } from 'react-native'
+import React from 'react'
 
 const PreFinalScreen = () => {
-  const {token, setToken} = useContext(AuthContext);
-  const [userData, setUserData] = useState();
-  const navigation = useNavigation();
-
-  useEffect(() => {
-    if (token) {
-      navigation.replace('MainStack', {screen: 'Main'});
-    }
-  }, [token]);
-  useEffect(() => {
-    getAllUserData();
-  }, []);
-
-
   return (
     <SafeAreaView style={{flex: 1, backgroundColor: 'white'}}>
       <View style={{marginTop: 80}}>
-        <Text
-          style={{
-            fontSize: 32,
-            fontWeight: 'bold',
-            fontFamily: 'GeezaPro-Bold',
-            marginLeft: 20,
-          }}>
-          All set to register
+        <Text style={{fontSize: 20, fontWeight: 'bold', textAlign: 'center'}}>
+          Congratulations! 🎉
         </Text>
-        <Text
-          style={{
-            fontSize: 32,
-            fontWeight: 'bold',
-            fontFamily: 'GeezaPro-Bold',
-            marginLeft: 20,
-            marginTop: 10,
-          }}>
-          Setting up your profile for you
+        <Text style={{marginTop: 10, textAlign: 'center'}}>
+          All set to register, Setting up your profile.
         </Text>
       </View>
-
       <Pressable
-        onPress={registerUser}
+        // onPress={registerUser}
         style={{backgroundColor: '#03C03C', padding: 15, marginTop: 'auto'}}>
         <Text
           style={{
@@ -59,5 +30,3 @@ const PreFinalScreen = () => {
 }
 
 export default PreFinalScreen
-
-const styles = StyleSheet.create({})

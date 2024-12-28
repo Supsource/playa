@@ -18,11 +18,15 @@ import PasswordScreen from '../screens/PasswordScreen';
 import NameScreen from '../screens/NameScreen';
 import SelectImgScreen from '../screens/SelectImgScreen';
 import PreFinalScreen from '../screens/PreFinalScreen';
+import {AuthContext} from '../AuthContext';
+import AsyncStorage from '@react-native-async-storage/async-storage';
+import {useContext} from 'react';
 
 const StackNavigator = () => {
   const Stack = createNativeStackNavigator();
   const Tab = createBottomTabNavigator();
 
+  const {isLoading, token} = useContext(AuthContext);
   function ButtonTabs() {
     return (
       <Tab.Navigator>
@@ -116,7 +120,7 @@ const StackNavigator = () => {
 
   return (
     <NavigationContainer>
-      <AuthStack />
+      {token === null || token === '' ? <AuthStack /> : <MainStack />}
     </NavigationContainer>
   );
 };

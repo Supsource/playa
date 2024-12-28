@@ -8,39 +8,38 @@ import {
 } from 'react-native';
 import React, {useState, useEffect} from 'react';
 import {useNavigation} from '@react-navigation/native';
-import {saveRegistrationProgress} from '../registrationUtils';
-import {getRegistrationProgress} from '../registrationUtils';
+import {saveRegistrationProgress, getRegistrationProgress} from '../registrationUtils';
 
 const RegisterScreen = () => {
-  const [email, setEmail] = useState('');
+  const [email, setEmail] = useState(''); 
   const navigation = useNavigation();
+
   useEffect(() => {
     getRegistrationProgress('Register').then(progressData => {
-      if (progressData) {
-        setEmail(progressData.email || '');
+      if (progressData?.email) {
+        setEmail(progressData.email); 
       }
     });
   }, []);
+
   const next = () => {
-    if (email && email.trim() !== '') {
+    if ((email || '').trim() !== '') {
       saveRegistrationProgress('Register', { email });
-      navigation.navigate('Password');
-    } else {
-      // Handle the case where email is empty or invalid
-      console.log('Email is required');
     }
+    navigation.navigate('Password');
   };
+
   return (
-    <SafeAreaView style={{flex: 1}}>
-      <View style={{padding: 13}}>
-        <Text style={{fontSize: 16, fontWeight: '500'}}>
+    <SafeAreaView style={{ flex: 1 }}>
+      <View style={{ padding: 13 }}>
+        <Text style={{ fontSize: 16, fontWeight: '500' }}>
           You're almost there!
         </Text>
-        <View style={{flexDirection: 'column', gap: 16, marginVertical: 40}}>
+        <View style={{ flexDirection: 'column', gap: 16, marginVertical: 40 }}>
           <Text>Enter Email</Text>
           <TextInput
             value={email}
-            onChange={setEmail}
+            onChangeText={setEmail} 
             style={{
               padding: 15,
               borderColor: '#D0D0D0',
@@ -52,18 +51,28 @@ const RegisterScreen = () => {
             onPress={next}
             style={{
               padding: 15,
-              backgroundColor: email?.length > 4 ? '#2dcf30' : '#E0E0E0',
+              backgroundColor: email?.trim()?.length > 4 ? '#2dcf30' : '#E0E0E0',
               borderRadius: 10,
               justifyContent: 'center',
               alignItems: 'center',
-            }}>
-            <Text style={{color: 'BLACK', textAlign: 'center'}}>Next</Text>
+            }}
+          >
+            <Text style={{ color: 'BLACK', textAlign: 'center' }}>Next</Text>
           </Pressable>
         </View>
-        <View style={{justifyContent: 'center', alignItems: 'center'}}>
-          <Text style={{textAlign: 'center', fontWeight: '500', fontSize: 15}}>I agree to recieve updates over Whatsapp</Text>
-          <Text style={{fontSize: 15, color: 'grey', marginTop: 20, textAlign: 'center'}}>
-            By Signing Up, you agree to the term of services and privacy policy
+        <View style={{ justifyContent: 'center', alignItems: 'center' }}>
+          <Text style={{ textAlign: 'center', fontWeight: '500', fontSize: 15 }}>
+            I agree to receive updates over WhatsApp
+          </Text>
+          <Text
+            style={{
+              fontSize: 15,
+              color: 'grey',
+              marginTop: 20,
+              textAlign: 'center',
+            }}
+          >
+            By Signing Up, you agree to the terms of service and privacy policy
           </Text>
         </View>
       </View>

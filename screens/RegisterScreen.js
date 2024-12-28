@@ -6,12 +6,30 @@ import {
   TextInput,
   View,
 } from 'react-native';
-import React, {useState} from 'react';
+import React, {useState, useEffect} from 'react';
 import {useNavigation} from '@react-navigation/native';
+import {saveRegistrationProgress} from '../registrationUtils';
+import {getRegistrationProgress} from '../registrationUtils';
 
 const RegisterScreen = () => {
   const [email, setEmail] = useState('');
   const navigation = useNavigation();
+  useEffect(() => {
+    getRegistrationProgress('Register').then(progressData => {
+      if (progressData) {
+        setEmail(progressData.email || '');
+      }
+    });
+  }, []);
+  const next = () => {
+    if (email && email.trim() !== '') {
+      saveRegistrationProgress('Register', { email });
+      navigation.navigate('Password');
+    } else {
+      // Handle the case where email is empty or invalid
+      console.log('Email is required');
+    }
+  };
   return (
     <SafeAreaView style={{flex: 1}}>
       <View style={{padding: 13}}>
@@ -31,7 +49,7 @@ const RegisterScreen = () => {
             }}
           />
           <Pressable
-            onPress={() => navigation.navigate('Password')}
+            onPress={next}
             style={{
               padding: 15,
               backgroundColor: email?.length > 4 ? '#2dcf30' : '#E0E0E0',

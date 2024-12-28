@@ -134,7 +134,7 @@ const StartScreen = () => {
       <View style={{ justifyContent: 'center', alignItems: 'center', marginTop: 25 }}>
         <Image
           style={{ width: 110, height: 60, resizeMode: 'contain' }}
-          source={{ uri: 'https://raw.githubusercontent.com/Supsource/playa/refs/heads/main/medias/Playa.png?token=GHSAT0AAAAAACYQFB3WNEYPTAATVWTQVGBKZ3JRSHA' }}
+          source={{ uri: 'https://raw.githubusercontent.com/Supsource/playa/refs/heads/main/medias/Playa.png?token=GHSAT0AAAAAACYQFB3XRR4WXACTKWAK6TK2Z3O4LFA' }}
         />
       </View>
     </SafeAreaView>

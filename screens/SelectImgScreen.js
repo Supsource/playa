@@ -1,9 +1,18 @@
-import { SafeAreaView, StyleSheet, Text, View, Image, Pressable, TextInput } from 'react-native';
-import React, { useEffect,useState } from 'react';
-import { useNavigation } from '@react-navigation/native';
+import {
+  StyleSheet,
+  Text,
+  View,
+  SafeAreaView,
+  TextInput,
+  Image,
+  Pressable,
+} from 'react-native';
+import React, {useEffect, useState} from 'react';
 import Ionicons from 'react-native-vector-icons/Ionicons';
+import {useNavigation} from '@react-navigation/native';
+import { getRegistrationProgress, saveRegistrationProgress } from '../registrationUtils';
 
-const SelectImgScreen = () => {
+const SelectImage = () => {
   const navigation = useNavigation();
   const [image, setImage] = useState();
   const images = [
@@ -26,11 +35,18 @@ const SelectImgScreen = () => {
   ];
 
 
+  useEffect(() => {
+    getRegistrationProgress('Image').then(progressData => {
+      if (progressData) {
+        setImage(progressData.image || '');
+      }
+    });
+  }, []);
 
   const saveImage = () => {
-    // if (image.trim() !== '') {
-    //   saveRegistrationProgress('Image', {image});
-    // }
+    if (image.trim() !== '') {
+      saveRegistrationProgress('Image', {image});
+    }
     navigation.navigate('PreFinal');
   };
 
@@ -147,9 +163,9 @@ const SelectImgScreen = () => {
         </Text>
       </Pressable>
     </>
-  )
-}
+  );
+};
 
-export default SelectImgScreen
+export default SelectImage;
 
-const styles = StyleSheet.create({})
+const styles = StyleSheet.create({});

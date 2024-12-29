@@ -195,7 +195,7 @@ const HomeScreen = ({ items }) => {
             <Image 
               style={styles.logo}
               source={{
-                uri: '' // Logo will be added here
+                uri: 'https://raw.githubusercontent.com/Supsource/playa/refs/heads/main/medias/Playa.png?token=GHSAT0AAAAAACYQFB3W4QTG5RB76HNAPDA4Z3RMDCA'
               }}
             />
           </View>

@@ -26,6 +26,7 @@ import TagVenueScreen from '../screens/TagVenueScreen';
 import SelectTimeScreen from '../screens/SelectTimeScreen';
 import GameSetUpScreen from '../screens/GameSetUpScreen';
 import PlayersScreen from '../screens/PlayersScreen';
+import ProfileDetailScreen from '../screens/ProfileDetailScreen';
 
 const StackNavigator = () => {
   const Stack = createNativeStackNavigator();
@@ -95,15 +96,45 @@ const StackNavigator = () => {
   }
 
   const AuthStack = () => {
-    return <Stack.Navigator>
-      <Stack.Screen name="Start" component={StartScreen} options={{headerShown: false}} />
-      <Stack.Screen name="Login" component={LoginScreen} options={{headerShown: false}} />
-      <Stack.Screen name="Register" component={RegisterScreen} options={{headerShown: false}} />
-      <Stack.Screen name="Password" component={PasswordScreen} options={{headerShown: false}} />
-      <Stack.Screen name="Name" component={NameScreen} options={{headerShown: false}} />
-      <Stack.Screen name="Image" component={SelectImgScreen} options={{headerShown: false}} />
-      <Stack.Screen name="PreFinal" component={PreFinalScreen} options={{headerShown: false}} />
-    </Stack.Navigator>;
+    return (
+      <Stack.Navigator>
+        <Stack.Screen
+          name="Start"
+          component={StartScreen}
+          options={{headerShown: false}}
+        />
+        <Stack.Screen
+          name="Login"
+          component={LoginScreen}
+          options={{headerShown: false}}
+        />
+        <Stack.Screen
+          name="Register"
+          component={RegisterScreen}
+          options={{headerShown: false}}
+        />
+        <Stack.Screen
+          name="Password"
+          component={PasswordScreen}
+          options={{headerShown: false}}
+        />
+        <Stack.Screen
+          name="Name"
+          component={NameScreen}
+          options={{headerShown: false}}
+        />
+        <Stack.Screen
+          name="Image"
+          component={SelectImgScreen}
+          options={{headerShown: false}}
+        />
+        <Stack.Screen
+          name="PreFinal"
+          component={PreFinalScreen}
+          options={{headerShown: false}}
+        />
+      </Stack.Navigator>
+    );
   };
 
   function MainStack() {
@@ -123,17 +154,20 @@ const StackNavigator = () => {
           name="Create"
           component={CreateActivity}
           options={{headerShown: false}}
-          initialParams={{ sport: '', area: '', date: '', timeInterval: '', noOfPlayers: 0 }}
+          initialParams={{
+            sport: '',
+            area: '',
+            date: '',
+            timeInterval: '',
+            noOfPlayers: 0,
+          }}
         />
         <Stack.Screen
           name="TagVenue"
           component={TagVenueScreen}
           options={{headerShown: false}}
         />
-        <Stack.Screen
-          name="Time"
-          component={SelectTimeScreen}
-        />
+        <Stack.Screen name="Time" component={SelectTimeScreen} />
         <Stack.Screen
           name="Game"
           component={GameSetUpScreen}
@@ -144,6 +178,7 @@ const StackNavigator = () => {
           component={PlayersScreen}
           options={{headerShown: false}}
         />
+        <Stack.Screen name="ProfileDetail" component={ProfileDetailScreen} />
       </Stack.Navigator>
     );
   }

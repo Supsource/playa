@@ -714,3 +714,37 @@ app.get('/upcoming', async (req, res) => {
     res.status(500).json({message: 'Failed to fetch upcoming games'});
   }
 });
+
+app.post('/games/:gameId/request', async (req, res) => {
+  try {
+    const {userId, comment} = req.body; // Assuming the userId and comment are sent in the request body
+    const {gameId} = req.params;
+
+    // Find the game by ID
+    const game = await Game.findById(gameId);
+
+    if (!game) {
+      return res.status(404).json({message: 'Game not found'});
+    }
+
+    // Check if the user has already requested to join the game
+    const existingRequest = game.requests.find(
+      request => request.userId.toString() === userId,
+    );
+    if (existingRequest) {
+      return res.status(400).json({message: 'Request already sent'});
+    }
+
+    // Add the user's ID and comment to the requests array
+    game.requests.push({userId, comment});
+
+    // Save the updated game document
+    await game.save();
+
+    res.status(200).json({message: 'Request sent successfully'});
+  } catch (err) {
+    console.error(err);
+    res.status(500).json({message: 'Failed to send request'});
+  }
+});
+

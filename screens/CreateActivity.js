@@ -74,10 +74,10 @@ const CreateActivity = () => {
   const [timeInterval, setTimeInterval] = useState('');
 
   useEffect(() => {
-    if (route.params?.timeInterval) {
-      setTimeInterval(route.params.timeInterval);
+    if (route?.params?.timeInterval) {
+      setTimeInterval(route?.params?.timeInterval);
     }
-  }, [route.params]);
+  }, [route?.params]);
 
   console.log(timeInterval);
 

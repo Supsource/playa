@@ -30,12 +30,12 @@ const CreateActivity = () => {
   const [selected, setSelected] = useState(['Public']);
   const [modalVisible, setModalVisible] = useState(false);
   const route = useRoute();
+  const {userId} = useContext(AuthContext);
   const [sport, setSport] = useState('');
   const [area, setArea] = useState('');
   const [date, setDate] = useState('');
   const [time, setTime] = useState('');
   const [noOfPlayers, setnoOfPlayers] = useState(0);
-  const {userId} = useContext(AuthContext);
   console.log('userID', userId);
   const generateDates = () => {
     const dates = [];
@@ -95,7 +95,7 @@ const CreateActivity = () => {
       };
 
       const response = await axios.post(
-        'http://localhost:8000/creategame',
+        'http://localhost:3000/creategame',
         gameData,
       );
       console.log('Game created:', response.data);
@@ -153,7 +153,7 @@ const CreateActivity = () => {
               Create Activity
             </Text>
             <Pressable
-              onPress={() => navigation.navigate('Sport')}
+              //onPress={() => navigation.navigate('Sport')}
               style={{
                 flexDirection: 'row',
                 alignItems: 'center',

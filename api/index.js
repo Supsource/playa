@@ -748,3 +748,87 @@ app.post('/games/:gameId/request', async (req, res) => {
   }
 });
 
+app.get('/games/:gameId/requests', async (req, res) => {
+  try {
+    const {gameId} = req.params;
+    const game = await Game.findById(gameId).populate({
+      path: 'requests.userId',
+      select: 'email firstName lastName image skill noOfGames playpals sports', // Select the fields you want to include
+    });
+
+    if (!game) {
+      return res.status(404).json({message: 'Game not found'});
+    }
+
+    const requestsWithUserInfo = game.requests.map(request => ({
+      userId: request.userId._id,
+      email: request.userId.email,
+      firstName: request.userId.firstName,
+      lastName: request.userId.lastName,
+      image: request.userId.image,
+      skill: request.userId.skill,
+      noOfGames: request.userId.noOfGames,
+      playpals: request.userId.playpals,
+      sports: request.userId.sports,
+      comment: request.comment,
+    }));
+
+    res.json(requestsWithUserInfo);
+  } catch (err) {
+    console.error(err);
+    res.status(500).json({message: 'Failed to fetch requests'});
+  }
+});
+
+app.post('/accept', async (req, res) => {
+  const {gameId, userId} = req.body;
+
+  console.log('user', userId);
+
+  console.log('heyy', gameId);
+
+  try {
+    // Find the game
+    const game = await Game.findById(gameId);
+    if (!game) {
+      return res.status(404).json({message: 'Game not found'});
+    }
+
+    game.players.push(userId);
+
+    // Remove the user from the requests array
+    // game.requests.splice(requestIndex, 1);
+
+    await Game.findByIdAndUpdate(
+      gameId,
+      {
+        $pull: {requests: {userId: userId}},
+      },
+      {new: true},
+    );
+
+    // Save the updated game
+    await game.save();
+
+    res.status(200).json({message: 'Request accepted', game});
+  } catch (error) {
+    console.error(error);
+    res.status(500).json({message: 'Server error'});
+  }
+});
+
+app.get('/game/:gameId/players', async (req, res) => {
+  try {
+    const {gameId} = req.params;
+    const game = await Game.findById(gameId).populate('players');
+
+    if (!game) {
+      return res.status(404).json({message: 'Game not found'});
+    }
+
+    res.status(200).json(game.players);
+  } catch (err) {
+    console.error(err);
+    res.status(500).json({message: 'Failed to fetch players'});
+  }
+});

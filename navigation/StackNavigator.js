@@ -136,6 +136,7 @@ const StackNavigator = () => {
         <Stack.Screen
           name="Game"
           component={GameSetUpScreen}
+          options={{headerShown: false}}
         />
       </Stack.Navigator>
     );

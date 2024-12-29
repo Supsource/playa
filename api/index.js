@@ -591,14 +591,19 @@ app.get('/venues', async (req, res) => {
 
 app.post('/creategame', async (req, res) => {
   try {
-    const {sport, area, date, time, admin, totalPlayers} = req.body;
+    const {sport, area, date, time, admin, totalPlayers, activityAccess} = req.body;
 
-    const activityAccess = 'public';
+    if (!sport || !area || !date || !time || !admin || !totalPlayers || !activityAccess) {
+      return res.status(400).json({message: 'All fields are required'});
+    }
 
     console.log('sport', sport);
-    console.log(area);
-    console.log(date);
-    console.log(admin);
+    console.log('area', area);
+    console.log('date', date);
+    console.log('time', time);
+    console.log('admin', admin);
+    console.log('totalPlayers', totalPlayers);
+    console.log('activityAccess', activityAccess);
 
     const newGame = new Game({
       sport,
@@ -607,13 +612,14 @@ app.post('/creategame', async (req, res) => {
       time,
       admin,
       totalPlayers,
+      activityAccess,
       players: [admin],
     });
 
     const savedGame = await newGame.save();
     res.status(200).json(savedGame);
   } catch (err) {
-    console.error(err);
+    console.error('Error creating game:', err);
     res.status(500).json({message: 'Failed to create game'});
   }
 });

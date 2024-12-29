@@ -121,6 +121,7 @@ const StackNavigator = () => {
           name="Create"
           component={CreateActivity}
           options={{headerShown: false}}
+          initialParams={{ sport: '', area: '', date: '', timeInterval: '', noOfPlayers: 0 }}
         />
         <Stack.Screen
           name="TagVenue"

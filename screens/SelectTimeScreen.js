@@ -1,6 +1,6 @@
 import React, { useState, useLayoutEffect } from 'react';
 import { View, Text, StyleSheet, Pressable, Button } from 'react-native';
-import { useNavigation } from '@react-navigation/native';
+import { useNavigation, useRoute } from '@react-navigation/native';
 import Ionicons from 'react-native-vector-icons/Ionicons';
 import Feather from 'react-native-vector-icons/Feather';
 import DateTimePickerModal from 'react-native-modal-datetime-picker';
@@ -8,6 +8,7 @@ import DateTimePickerModal from 'react-native-modal-datetime-picker';
 const SelectTimeScreen = () => {
   const [time, setTime] = useState('');
   const navigation = useNavigation();
+  const route = useRoute();
 
   const times = [
     {
@@ -55,6 +56,10 @@ const SelectTimeScreen = () => {
     setTime(item.type);
     navigation.navigate('Create', {
       timeInterval: `${formatTime(new Date(item.start))} - ${formatTime(new Date(item.end))}`,
+      sport: route.params?.sport,
+      area: route.params?.area,
+      date: route.params?.date,
+      noOfPlayers: route.params?.noOfPlayers
     });
   };
 

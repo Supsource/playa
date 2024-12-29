@@ -12,11 +12,12 @@ import {
   import Ionicons from 'react-native-vector-icons/Ionicons';
   import axios from 'axios';
   import Venue from '../components/Venue';
-  import { useNavigation } from '@react-navigation/native';
+  import { useNavigation, useRoute } from '@react-navigation/native';
   
   const TagVenueScreen = () => {
     const [venues, setVenues] = useState([]);
     const navigation = useNavigation();
+    const route = useRoute();
   
     useEffect(() => {
       const fetchVenues = async () => {
@@ -43,7 +44,13 @@ import {
     }, [taggedVenue, navigation]);
   
     const handleSelectVenue = (venue) => {
-      navigation.navigate('Create', { taggedVenue: venue });
+      navigation.navigate('Create', { 
+        taggedVenue: venue,
+        sport: route.params?.sport,
+        date: route.params?.date,
+        timeInterval: route.params?.timeInterval,
+        noOfPlayers: route.params?.noOfPlayers
+      });
     };
   
     return (
@@ -154,4 +161,3 @@ import {
   export default TagVenueScreen;
   
   const styles = StyleSheet.create({});
-  

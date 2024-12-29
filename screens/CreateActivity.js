@@ -85,13 +85,15 @@ const CreateActivity = () => {
     try {
       const admin = userId;
       const time = timeInterval;
+      const activityAccess = selected.includes('Public') ? 'public' : 'invite only';
       const gameData = {
         sport,
-        area: taggedVenue,
+        area: taggedVenue || area,
         date,
         time,
         admin,
-        totalPlayers:noOfPlayers
+        totalPlayers: noOfPlayers,
+        activityAccess
       };
 
       const response = await axios.post(
@@ -113,6 +115,7 @@ const CreateActivity = () => {
         setArea('');
         setDate('');
         setTimeInterval('');
+        setnoOfPlayers(0);
       }
       // Handle success or navigate to another screen
     } catch (error) {
@@ -153,7 +156,13 @@ const CreateActivity = () => {
               Create Activity
             </Text>
             <Pressable
-              //onPress={() => navigation.navigate('Sport')}
+              onPress={() => navigation.navigate('Sport', {
+                sport,
+                area: taggedVenue,
+                date,
+                timeInterval,
+                noOfPlayers
+              })}
               style={{
                 flexDirection: 'row',
                 alignItems: 'center',
@@ -180,7 +189,13 @@ const CreateActivity = () => {
             />
 
             <Pressable
-              onPress={() => navigation.navigate('TagVenue')}
+              onPress={() => navigation.navigate('TagVenue', {
+                sport,
+                area: taggedVenue,
+                date,
+                timeInterval,
+                noOfPlayers
+              })}
               style={{
                 flexDirection: 'row',
                 alignItems: 'center',
@@ -233,7 +248,13 @@ const CreateActivity = () => {
             />
 
             <Pressable
-              onPress={() => navigation.navigate('Time')}
+              onPress={() => navigation.navigate('Time', {
+                sport,
+                area: taggedVenue,
+                date,
+                timeInterval,
+                noOfPlayers
+              })}
               style={{
                 flexDirection: 'row',
                 alignItems: 'center',

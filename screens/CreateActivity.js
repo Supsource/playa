@@ -109,41 +109,53 @@ const CreateActivity = () => {
         area: taggedVenue || area,
         date,
         time,
-        totalPlayers: noOfPlayers
+        totalPlayers: noOfPlayers,
       };
-
+  
       console.log('Sending game data:', gameData); // Log the game data
-
-      const response = await axios.post(
-        'http://localhost:3000/creategame',
-        gameData,
-      );
+  
+      // Send the POST request to create the game
+      const response = await axios.post('http://localhost:3000/creategame', gameData);
+  
       console.log('Game created:', response.data);
-      if (response.status == 200) {
-        Alert.alert('Success!', 'Game created Succesfully', [
+  
+      if (response.status >= 200 && response.status < 300) {
+        Alert.alert('Success!', 'Game created successfully', [
           {
             text: 'Cancel',
             onPress: () => console.log('Cancel Pressed'),
             style: 'cancel',
           },
-          {text: 'OK', onPress: () => navigation.goBack()},
+          {
+            text: 'OK',
+            onPress: () => navigation.navigate('Main', { screen: 'PLAY' }), // Navigate to the PLAY tab
+          },
         ]);
-
+  
+        // Reset form fields after success
         setSport('');
         setArea('');
         setDate('');
         setTimeInterval('');
+      } else {
+        Alert.alert('Error', 'Failed to create game');
       }
-      // Handle success or navigate to another screen
     } catch (error) {
       console.error('Failed to create game:', error);
+  
+      // Handle Axios errors
       if (error.response) {
         console.error('Response data:', error.response.data);
+        Alert.alert('Error', `Failed to create game: ${error.response.data.message || 'Unknown error'}`);
+      } else if (error.request) {
+        console.error('No response received:', error.request);
+        Alert.alert('Error', 'No response from the server. Please try again.');
+      } else {
+        console.error('Error:', error.message);
+        Alert.alert('Error', `Something went wrong: ${error.message}`);
       }
-      // Handle error
     }
   };
-
   return (
     <>
       <SafeAreaView
@@ -166,7 +178,7 @@ const CreateActivity = () => {
               Create Activity
             </Text>
             <Pressable
-              onPress={() => navigation.navigate('PlayScreen', {
+              onPress={() => navigation.navigate('Sport', {
                 sport,
                 area: taggedVenue || area,
                 date,

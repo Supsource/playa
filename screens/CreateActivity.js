@@ -8,7 +8,7 @@ import {
   TextInput,
   View,
 } from 'react-native';
-import React, {useState} from 'react';
+import React, {useEffect, useState} from 'react';
 import Ionicons from 'react-native-vector-icons/Ionicons';
 import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons';
 import AntDesgin from 'react-native-vector-icons/AntDesign';
@@ -16,6 +16,7 @@ import Entypo from 'react-native-vector-icons/Entypo';
 import Feather from 'react-native-vector-icons/Feather';
 import FontAwesome5 from 'react-native-vector-icons/FontAwesome5';
 import {useNavigation} from '@react-navigation/native';
+import {useRoute} from '@react-navigation/native';
 
 const CreateActivity = () => {
   const [sport, setSport] = useState('');
@@ -26,6 +27,13 @@ const CreateActivity = () => {
   const [timeInterval, setTimeInterval] = useState('');
   const [selected, setSelected] = useState(['Public']);
   const navigation = useNavigation();
+  const route = useRoute();
+  const [taggedVenue, setTaggedVenue] = useState(null);
+  useEffect(() => {
+    if (route.params?.taggedVenue) {
+      setTaggedVenue(route?.params?.taggedVenue);
+    }
+  }, [route?.params]);
   return (
     <SafeAreaView
       style={{
@@ -65,7 +73,7 @@ const CreateActivity = () => {
           {/* Below This is a horizontal line  */}
           <Text style={{borderColor: '#E0E0E0', borderWidth: 1, height: 1}} />
           <Pressable
-          onPress={() => navigation.navigate('TagVenue')}
+            onPress={() => navigation.navigate('TagVenue')}
             style={{
               flexDirection: 'row',
               alignItems: 'center',
@@ -77,7 +85,7 @@ const CreateActivity = () => {
             <View style={{flex: 1}}>
               <Text style={{fontSize: 17, fontWeight: '500'}}>Area</Text>
               <TextInput
-                value={area}
+                value={area ? area : taggedVenue}
                 onChangeText={setArea}
                 style={{marginTop: 7, fontSize: 15, color: 'black'}}
                 placeholderTextColor="gray"
@@ -335,10 +343,19 @@ const CreateActivity = () => {
               placeholder="Add Instructions"
             />
           </View>
-          <View style={{flexDirection: 'row', alignItems: 'center', gap: 10, marginTop: 15, marginVertical: 10}}>
+          <View
+            style={{
+              flexDirection: 'row',
+              alignItems: 'center',
+              gap: 10,
+              marginTop: 15,
+              marginVertical: 10,
+            }}>
             <AntDesgin name="setting" size={24} color="black" />
             <View style={{flex: 1}}>
-                <Text style={{fontSize: 15, fontWeight: '500'}}>Advance Settings</Text>
+              <Text style={{fontSize: 15, fontWeight: '500'}}>
+                Advance Settings
+              </Text>
             </View>
             <AntDesgin name="arrowright" size={24} color="black" />
           </View>

@@ -1,6 +1,6 @@
-import {Pressable, StyleSheet, Text, View, Button} from 'react-native';
-import React, {useLayoutEffect, useContext, useState, useEffect} from 'react';
-import {useNavigation} from '@react-navigation/native';
+import { Pressable, StyleSheet, Text, View, Button } from 'react-native';
+import React, { useLayoutEffect, useState } from 'react';
+import { useNavigation } from '@react-navigation/native';
 import Ionicons from 'react-native-vector-icons/Ionicons';
 import Feather from 'react-native-vector-icons/Feather';
 import DateTimePickerModal from 'react-native-modal-datetime-picker';
@@ -14,25 +14,25 @@ const SelectTimeScreen = () => {
       id: '0',
       type: 'Morning',
       timings: '12 AM - 9 AM',
-      icon: <Feather name="sunrise" size={24} color="black" />,
+      icon: <Feather name="sunrise" size={28} color="orange" />,
     },
     {
       id: '1',
       type: 'Day',
       timings: '9 AM - 4 PM',
-      icon: <Feather name="sun" size={24} color="black" />,
+      icon: <Feather name="sun" size={28} color="gold" />,
     },
     {
       id: '2',
       type: 'Evening',
       timings: '4 PM - 9 PM',
-      icon: <Feather name="sunset" size={24} color="black" />,
+      icon: <Feather name="sunset" size={28} color="orangered" />,
     },
     {
       id: '3',
       type: 'Night',
       timings: '9 PM - 11 PM',
-      icon: <Ionicons name="cloudy-night-outline" size={24} color="black" />,
+      icon: <Ionicons name="cloudy-night-outline" size={28} color="midnightblue" />,
     },
   ];
 
@@ -51,8 +51,9 @@ const SelectTimeScreen = () => {
       headerShown: true,
       title: 'Select Suitable Time',
       headerTitleStyle: {
-        fontSize: 20,
-        fontWeight: 'bold',
+        fontSize: 22,
+        fontWeight: '700',
+        color: '#333',
       },
     });
   }, [navigation]);
@@ -112,7 +113,7 @@ const SelectTimeScreen = () => {
       <View style={styles.pickerContainer}>
         <View style={styles.pickerSection}>
           <Text style={styles.label}>Start Time:</Text>
-          <Button title={formatTime(startTime)} onPress={showStartTimePicker} />
+          <Button title={formatTime(startTime)} onPress={showStartTimePicker} color="teal" />
           <DateTimePickerModal
             isVisible={isStartTimePickerVisible}
             mode="time"
@@ -123,7 +124,7 @@ const SelectTimeScreen = () => {
         </View>
         <View style={styles.pickerSection}>
           <Text style={styles.label}>End Time:</Text>
-          <Button title={formatTime(endTime)} onPress={showEndTimePicker} />
+          <Button title={formatTime(endTime)} onPress={showEndTimePicker} color="teal" />
           <DateTimePickerModal
             isVisible={isEndTimePickerVisible}
             mode="time"
@@ -150,37 +151,40 @@ export default SelectTimeScreen;
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: '#f8f9fa',
+    backgroundColor: '#f4f4f8',
     padding: 16,
   },
   timeSlotsContainer: {
     flexDirection: 'row',
     flexWrap: 'wrap',
-    justifyContent: 'center',
+    justifyContent: 'space-between',
     marginBottom: 24,
   },
   timeSlot: {
     backgroundColor: '#ffffff',
-    margin: 10,
+    marginBottom: 12,
     padding: 16,
-    width: 160,
+    width: '47%',
     height: 120,
-    borderRadius: 8,
+    borderRadius: 12,
     alignItems: 'center',
     justifyContent: 'center',
     shadowColor: '#000',
     shadowOffset: { width: 0, height: 2 },
     shadowOpacity: 0.2,
     shadowRadius: 3,
-    elevation: 4,
+    elevation: 5,
   },
   timeSlotText: {
-    fontSize: 16,
+    fontSize: 18,
     fontWeight: '600',
+    marginTop: 8,
+    color: '#333',
   },
   timeSlotTimings: {
     fontSize: 14,
     color: '#6c757d',
+    marginTop: 4,
   },
   pickerContainer: {
     marginVertical: 16,
@@ -193,6 +197,7 @@ const styles = StyleSheet.create({
     fontSize: 16,
     fontWeight: '500',
     marginBottom: 8,
+    color: '#333',
   },
   summaryContainer: {
     marginTop: 16,

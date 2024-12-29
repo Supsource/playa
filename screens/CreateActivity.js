@@ -36,6 +36,13 @@ const CreateActivity = () => {
   const route = useRoute();
   const [taggedVenue, setTaggedVenue] = useState(null);
   const [modalVisible, setModalVisible] = useState(false);
+
+  useEffect(() => {
+    if (route?.params?.timeInterval) {
+      setTimeInterval(route?.params?.timeInterval);
+    }
+  }, [route?.params]);
+
   useEffect(() => {
     if (route.params?.taggedVenue) {
       setTaggedVenue(route?.params?.taggedVenue);
@@ -160,6 +167,7 @@ const CreateActivity = () => {
           {/* Below This is a horizontal line  */}
           <Text style={{borderColor: '#E0E0E0', borderWidth: 1, height: 1}} />
           <Pressable
+          onPress={() => navigation.navigate('Time')}
             style={{
               flexDirection: 'row',
               alignItems: 'center',

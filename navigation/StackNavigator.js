@@ -23,6 +23,7 @@ import AsyncStorage from '@react-native-async-storage/async-storage';
 import {useContext} from 'react';
 import CreateActivity from '../screens/CreateActivity';
 import TagVenueScreen from '../screens/TagVenueScreen';
+import SelectTimeScreen from '../screens/SelectTimeScreen';
 
 const StackNavigator = () => {
   const Stack = createNativeStackNavigator();
@@ -125,6 +126,10 @@ const StackNavigator = () => {
           name="TagVenue"
           component={TagVenueScreen}
           options={{headerShown: false}}
+        />
+        <Stack.Screen
+          name="Time"
+          component={SelectTimeScreen}
         />
       </Stack.Navigator>
     );

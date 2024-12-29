@@ -24,19 +24,44 @@ import {ModalContent} from 'react-native-modals';
 import moment from 'moment';
 import axios from 'axios';
 import {AuthContext} from '../AuthContext';
+import { handleAxiosError } from '../utils/axiosErrorHandler';
 
 const CreateActivity = () => {
   const navigation = useNavigation();
   const [selected, setSelected] = useState(['Public']);
-  const [modalVisible, setModalVisible] = useState(false);
   const route = useRoute();
   const {userId} = useContext(AuthContext);
+  console.log('userId from AuthContext:', userId); // Add this line to log userId
   const [sport, setSport] = useState('');
   const [area, setArea] = useState('');
   const [date, setDate] = useState('');
   const [time, setTime] = useState('');
   const [noOfPlayers, setnoOfPlayers] = useState(0);
-  console.log('userID', userId);
+  const [modalVisible, setModalVisible] = useState(false);
+  const [taggedVenue, setTaggedVenue] = useState(null);
+  const [timeInterval, setTimeInterval] = useState('');
+
+  useEffect(() => {
+    if (route?.params?.timeInterval) {
+      setTimeInterval(route?.params?.timeInterval);
+    }
+    if (route?.params?.sport) {
+      setSport(route?.params?.sport);
+    }
+    if (route?.params?.area) {
+      setArea(route?.params?.area);
+    }
+    if (route?.params?.date) {
+      setDate(route?.params?.date);
+    }
+    if (route?.params?.noOfPlayers) {
+      setnoOfPlayers(route?.params?.noOfPlayers);
+    }
+    if (route.params?.taggedVenue) {
+      setTaggedVenue(route.params.taggedVenue);
+    }
+  }, [route?.params]);
+
   const generateDates = () => {
     const dates = [];
     for (let i = 0; i < 10; i++) {
@@ -71,30 +96,23 @@ const CreateActivity = () => {
 
   console.log(route.params);
 
-  const [timeInterval, setTimeInterval] = useState('');
-
-  useEffect(() => {
-    if (route?.params?.timeInterval) {
-      setTimeInterval(route?.params?.timeInterval);
-    }
-  }, [route?.params]);
-
   console.log(timeInterval);
 
   const createGame = async () => {
     try {
-      const admin = userId;
+      console.log('Admin userId:', userId); // Log the correct admin userId
+     const admin = userId;
       const time = timeInterval;
-      const activityAccess = selected.includes('Public') ? 'public' : 'invite only';
       const gameData = {
+        admin: userId, 
         sport,
         area: taggedVenue || area,
         date,
         time,
-        admin,
-        totalPlayers: noOfPlayers,
-        activityAccess
+        totalPlayers: noOfPlayers
       };
+
+      console.log('Sending game data:', gameData); // Log the game data
 
       const response = await axios.post(
         'http://localhost:3000/creategame',
@@ -115,25 +133,17 @@ const CreateActivity = () => {
         setArea('');
         setDate('');
         setTimeInterval('');
-        setnoOfPlayers(0);
       }
       // Handle success or navigate to another screen
     } catch (error) {
       console.error('Failed to create game:', error);
+      if (error.response) {
+        console.error('Response data:', error.response.data);
+      }
       // Handle error
     }
   };
 
-  const [taggedVenue, setTaggedVenue] = useState(null);
-
-  useEffect(() => {
-    console.log('I run');
-    if (route.params?.taggedVenue) {
-      setTaggedVenue(route.params.taggedVenue);
-    }
-  }, [route.params]);
-
-  console.log('tagged', route?.params?.taggedVenue);
   return (
     <>
       <SafeAreaView
@@ -158,7 +168,7 @@ const CreateActivity = () => {
             <Pressable
               onPress={() => navigation.navigate('Sport', {
                 sport,
-                area: taggedVenue,
+                area: taggedVenue || area,
                 date,
                 timeInterval,
                 noOfPlayers
@@ -191,7 +201,7 @@ const CreateActivity = () => {
             <Pressable
               onPress={() => navigation.navigate('TagVenue', {
                 sport,
-                area: taggedVenue,
+                area: taggedVenue || area,
                 date,
                 timeInterval,
                 noOfPlayers
@@ -250,7 +260,7 @@ const CreateActivity = () => {
             <Pressable
               onPress={() => navigation.navigate('Time', {
                 sport,
-                area: taggedVenue,
+                area: taggedVenue || area,
                 date,
                 timeInterval,
                 noOfPlayers
@@ -399,8 +409,8 @@ const CreateActivity = () => {
               <View style={{marginVertical: 5}}>
                 <View>
                   <TextInput
-                  value={noOfPlayers}
-                  onChangeText={setnoOfPlayers}
+                    value={noOfPlayers.toString()}
+                    onChangeText={text => setnoOfPlayers(Number(text))}
                     style={{
                       padding: 10,
                       backgroundColor: 'white',
@@ -408,6 +418,7 @@ const CreateActivity = () => {
                       borderWidth: 1,
                     }}
                     placeholder="Total Players (including you)"
+                    keyboardType="numeric"
                   />
                 </View>
               </View>
@@ -567,6 +578,7 @@ const CreateActivity = () => {
               }}>
               {dates?.map((item, index) => (
                 <Pressable
+                  key={index}
                   onPress={() => selectDate(item?.actualDate)}
                   style={{
                     padding: 10,

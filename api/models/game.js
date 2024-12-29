@@ -8,15 +8,15 @@ const gameSchema = new schema({
     },
     area : {
         type: String,
-        required: true
+        required: true // Change this to true to ensure area is required
     },
     date: {
-        type: Date,
-        required: true
+        type: String, // Change this from Date to String
+        required: true // Change this to true to ensure date is required
     },
     time: {
         type: String,
-        required: true
+        required: true // Change this to true to ensure time is required
     },
     activityAccess : {
         type: String,

@@ -80,7 +80,13 @@ const SelectTimeScreen = () => {
 
     if (startTime) {
       const timeInterval = `${formatTime(startTime)} - ${formatTime(time)}`;
-      navigation.navigate('Create', { timeInterval });
+      navigation.navigate('Create', {
+        timeInterval,
+        sport: route.params?.sport,
+        area: route.params?.area,
+        date: route.params?.date,
+        noOfPlayers: route.params?.noOfPlayers
+      });
     }
   };
 

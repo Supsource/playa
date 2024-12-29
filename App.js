@@ -23,10 +23,10 @@ import {
   LearnMoreLinks,
   ReloadInstructions,
 } from 'react-native/Libraries/NewAppScreen';
+import AntDesign from 'react-native-vector-icons/AntDesign';
 import StackNavigator from './navigation/StackNavigator';
 import {AuthProvider} from './AuthContext';
-import { ModalPortal } from 'react-native-modals';
-
+import {ModalPortal} from 'react-native-modals';
 
 function Section({children, title}) {
   const isDarkMode = useColorScheme() === 'dark';

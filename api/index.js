@@ -591,35 +591,30 @@ app.get('/venues', async (req, res) => {
 
 app.post('/creategame', async (req, res) => {
   try {
-    const {sport, area, date, time, admin, totalPlayers, activityAccess} = req.body;
+    const { sport, area, date, time, admin, totalPlayers } = req.body;
 
-    if (!sport || !area || !date || !time || !admin || !totalPlayers || !activityAccess) {
-      return res.status(400).json({message: 'All fields are required'});
+    if (!admin || !mongoose.Types.ObjectId.isValid(admin)) {
+      return res.status(400).json({ message: 'Invalid admin ID' });
     }
 
-    console.log('sport', sport);
-    console.log('area', area);
-    console.log('date', date);
-    console.log('time', time);
-    console.log('admin', admin);
-    console.log('totalPlayers', totalPlayers);
-    console.log('activityAccess', activityAccess);
+    if (!area) {
+      return res.status(400).json({ message: 'Area is required' });
+    }
 
     const newGame = new Game({
       sport,
       area,
       date,
       time,
-      admin,
+      admin: mongoose.Types.ObjectId(admin),
       totalPlayers,
-      activityAccess,
-      players: [admin],
+      players: [mongoose.Types.ObjectId(admin)],
     });
 
     const savedGame = await newGame.save();
     res.status(200).json(savedGame);
   } catch (err) {
-    console.error('Error creating game:', err);
-    res.status(500).json({message: 'Failed to create game'});
+    console.error(err);
+    res.status(500).json({ message: 'Failed to create game' });
   }
 });

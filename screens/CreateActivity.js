@@ -17,6 +17,12 @@ import Feather from 'react-native-vector-icons/Feather';
 import FontAwesome5 from 'react-native-vector-icons/FontAwesome5';
 import {useNavigation} from '@react-navigation/native';
 import {useRoute} from '@react-navigation/native';
+import {BottomModal} from 'react-native-modals';
+import {SlideAnimation} from 'react-native-modals';
+import {ModalContent} from 'react-native-modals';
+import moment from 'moment';
+import axios from 'axios';
+import {AuthContext} from '../AuthContext';
 
 const CreateActivity = () => {
   const [sport, setSport] = useState('');
@@ -29,12 +35,44 @@ const CreateActivity = () => {
   const navigation = useNavigation();
   const route = useRoute();
   const [taggedVenue, setTaggedVenue] = useState(null);
+  const [modalVisible, setModalVisible] = useState(false);
   useEffect(() => {
     if (route.params?.taggedVenue) {
       setTaggedVenue(route?.params?.taggedVenue);
     }
   }, [route?.params]);
+
+  const generateDates = () => {
+    const dates = [];
+    for (let i = 0; i < 10; i++) {
+      const date = moment().add(i, 'days');
+      let displayDate;
+      if (i === 0) {
+        displayDate = 'Today';
+      } else if (i === 1) {
+        displayDate = 'Tomorrow';
+      } else if (i === 2) {
+        displayDate = 'Day after';
+      } else {
+        displayDate = date.format('Do MMMM');
+      }
+      dates.push({
+        id: i.toString(),
+        displayDate,
+        dayOfWeek: date.format('dddd'),
+        actualDate: date.format('Do MMMM'),
+      });
+    }
+    return dates;
+  };
+  const dates = generateDates();
+
+  const selectDate = date => {
+    setModalVisible(false);
+    setDate(date);
+  };
   return (
+    <>
     <SafeAreaView
       style={{
         flex: 1,
@@ -97,6 +135,7 @@ const CreateActivity = () => {
           {/* Below This is a horizontal line  */}
           <Text style={{borderColor: '#E0E0E0', borderWidth: 1, height: 1}} />
           <Pressable
+           onPress={() => setModalVisible(!modalVisible)}
             style={{
               flexDirection: 'row',
               alignItems: 'center',
@@ -362,6 +401,57 @@ const CreateActivity = () => {
         </View>
       </ScrollView>
     </SafeAreaView>
+    <BottomModal
+        onBackdropPress={() => setModalVisible(!modalVisible)}
+        swipeDirection={['up', 'down']}
+        swipeThreshold={200}
+        modalAnimation={
+          new SlideAnimation({
+            slideFrom: 'bottom',
+          })
+        }
+        onHardwareBackPress={() => setModalVisible(!modalVisible)}
+        visible={modalVisible}
+        onTouchOutside={() => setModalVisible(!modalVisible)}>
+        <ModalContent
+          style={{width: '100%', height: 400, backgroundColor: 'white'}}>
+          <View>
+            <Text
+              style={{textAlign: 'center', fontSize: 16, fontWeight: 'bold'}}>
+              Choose a date to host the game
+            </Text>
+
+            <View
+              style={{
+                flexDirection: 'row',
+                alignItems: 'center',
+                gap: 15,
+                flexWrap: 'wrap',
+                marginVertical: 20,
+              }}>
+              {dates?.map((item, index) => (
+                <Pressable
+                  onPress={() => selectDate(item?.actualDate)}
+                  style={{
+                    padding: 10,
+                    borderRadius: 10,
+                    borderColor: '#E0E0E0',
+                    borderWidth: 1,
+                    width: '30%',
+                    justifyContent: 'center',
+                    alignItems: 'center',
+                  }}>
+                  <Text>{item?.displayDate}</Text>
+                  <Text style={{color: 'gray', marginTop: 8}}>
+                    {item?.dayOfWeek}
+                  </Text>
+                </Pressable>
+              ))}
+            </View>
+          </View>
+        </ModalContent>
+      </BottomModal>
+    </>
   );
 };
 

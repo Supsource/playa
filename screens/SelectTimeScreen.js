@@ -1,6 +1,6 @@
-import {Pressable, StyleSheet, Text, View, Button} from 'react-native';
-import React, {useLayoutEffect, useContext, useState, useEffect} from 'react';
-import {useNavigation} from '@react-navigation/native';
+import React, { useState, useLayoutEffect } from 'react';
+import { View, Text, StyleSheet, Pressable, Button } from 'react-native';
+import { useNavigation } from '@react-navigation/native';
 import Ionicons from 'react-native-vector-icons/Ionicons';
 import Feather from 'react-native-vector-icons/Feather';
 import DateTimePickerModal from 'react-native-modal-datetime-picker';
@@ -13,25 +13,33 @@ const SelectTimeScreen = () => {
     {
       id: '0',
       type: 'Morning',
-      timings: '12 AM - 9 AM',
+      timings: '5 AM - 9 AM',
+      start: new Date().setHours(5, 0), // 5:00 AM
+      end: new Date().setHours(9, 0),  // 9:00 AM
       icon: <Feather name="sunrise" size={24} color="black" />,
     },
     {
       id: '1',
       type: 'Day',
       timings: '9 AM - 4 PM',
+      start: new Date().setHours(9, 0), // 9:00 AM
+      end: new Date().setHours(16, 0), // 4:00 PM
       icon: <Feather name="sun" size={24} color="black" />,
     },
     {
       id: '2',
       type: 'Evening',
       timings: '4 PM - 9 PM',
+      start: new Date().setHours(16, 0), // 4:00 PM
+      end: new Date().setHours(21, 0), // 9:00 PM
       icon: <Feather name="sunset" size={24} color="black" />,
     },
     {
       id: '3',
       type: 'Night',
       timings: '9 PM - 11 PM',
+      start: new Date().setHours(21, 0), // 9:00 PM
+      end: new Date().setHours(23, 0), // 11:00 PM
       icon: <Ionicons name="cloudy-night-outline" size={24} color="black" />,
     },
   ];
@@ -41,9 +49,44 @@ const SelectTimeScreen = () => {
   const [startTime, setStartTime] = useState(null);
   const [endTime, setEndTime] = useState(null);
 
-  const selectTime = (item) => {
-    setTime(item);
-    navigation.goBack();
+  const selectPredefinedTime = (item) => {
+    setStartTime(new Date(item.start));
+    setEndTime(new Date(item.end));
+    setTime(item.type);
+    navigation.navigate('Create', {
+      timeInterval: `${formatTime(new Date(item.start))} - ${formatTime(new Date(item.end))}`,
+    });
+  };
+
+  const showStartTimePicker = () => setStartTimePickerVisibility(true);
+  const hideStartTimePicker = () => setStartTimePickerVisibility(false);
+
+  const showEndTimePicker = () => setEndTimePickerVisibility(true);
+  const hideEndTimePicker = () => setEndTimePickerVisibility(false);
+
+  const handleConfirmStartTime = (time) => {
+    setStartTime(time);
+    hideStartTimePicker();
+  };
+
+  const handleConfirmEndTime = (time) => {
+    setEndTime(time);
+    hideEndTimePicker();
+
+    if (startTime) {
+      const timeInterval = `${formatTime(startTime)} - ${formatTime(time)}`;
+      navigation.navigate('Create', { timeInterval });
+    }
+  };
+
+  const formatTime = (time) => {
+    if (!time) return 'Select Time';
+    const hours = time.getHours();
+    const minutes = time.getMinutes();
+    const ampm = hours >= 12 ? 'PM' : 'AM';
+    const formattedHours = hours % 12 || 12;
+    const formattedMinutes = minutes < 10 ? `0${minutes}` : minutes;
+    return `${formattedHours}:${formattedMinutes} ${ampm}`;
   };
 
   useLayoutEffect(() => {
@@ -57,56 +100,13 @@ const SelectTimeScreen = () => {
     });
   }, [navigation]);
 
-  const showStartTimePicker = () => {
-    setStartTimePickerVisibility(true);
-  };
-
-  const hideStartTimePicker = () => {
-    setStartTimePickerVisibility(false);
-  };
-
-  const showEndTimePicker = () => {
-    setEndTimePickerVisibility(true);
-  };
-
-  const hideEndTimePicker = () => {
-    setEndTimePickerVisibility(false);
-  };
-
-  const handleConfirmStartTime = (time) => {
-    setStartTime(time);
-    hideStartTimePicker();
-  };
-
-  const handleConfirmEndTime = (time) => {
-    setEndTime(time);
-    hideEndTimePicker();
-
-    if (startTime) {
-        const formattedStartTime = formatTime(startTime);
-        const formattedEndTime = formatTime(time);
-        const timeInterval = `${formattedStartTime} - ${formattedEndTime}`;
-        navigation.navigate('Create', { timeInterval });
-      }
-  };
-
-  const formatTime = (time) => {
-    if (!time) return 'Select Time';
-    const hours = time.getHours();
-    const minutes = time.getMinutes();
-    const ampm = hours >= 12 ? 'PM' : 'AM';
-    const formattedHours = hours % 12 || 12;
-    const formattedMinutes = minutes < 10 ? `0${minutes}` : minutes;
-    return `${formattedHours}:${formattedMinutes} ${ampm}`;
-  };
-
   return (
     <View style={styles.container}>
       <View style={styles.timeSlotsContainer}>
         {times.map((item) => (
           <Pressable
             key={item.id}
-            onPress={() => selectTime(item.type)}
+            onPress={() => selectPredefinedTime(item)}
             style={styles.timeSlot}
           >
             {item.icon}

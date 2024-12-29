@@ -11,11 +11,12 @@ const port = process.env.PORT || 3000;
 const dbUri = process.env.DB_URI;
 
 app.use(cors());
-app.use(bodyParser.urlencoded({ extended: false }));
+app.use(bodyParser.urlencoded({extended: false}));
 app.use(bodyParser.json());
 const jwt = require('jsonwebtoken');
 
-mongoose.connect(dbUri)
+mongoose
+  .connect(dbUri)
   .then(() => {
     console.log('Connected to database');
   })
@@ -141,21 +142,23 @@ const venues = [
         ],
       },
     ],
-    image:"https://playo.gumlet.io/FIGURINEFITNESSINDIRANAGAR/SnookerRoom1652349575145.jpeg?mode=crop&crop=smart&h=200&width=450&q=75",
+    image:
+      'https://playo.gumlet.io/FIGURINEFITNESSINDIRANAGAR/SnookerRoom1652349575145.jpeg?mode=crop&crop=smart&h=200&width=450&q=75',
     location:
       'No. 27, Museum Rd, Shanthala Nagar, Ashok Nagar, Bengaluru, Karnataka',
-    address:"AVS Compound, 1st Floor, 1st Cross",
+    address: 'AVS Compound, 1st Floor, 1st Cross',
     bookings: [],
   },
   {
     name: 'OvalNet Badminton Academy - Sahakar Nagar',
     rating: 4,
-    deferLink: "https://z34v4.app.goo.gl/MAAX",
-    fullLink: "https://playo.co/venue/?venueId=afbe7186-2f86-4215-8715-4b967f166b09",
+    deferLink: 'https://z34v4.app.goo.gl/MAAX',
+    fullLink:
+      'https://playo.co/venue/?venueId=afbe7186-2f86-4215-8715-4b967f166b09',
     avgRating: 4,
     ratingCount: 3,
-    "lat": 13.059883,
-    "lng": 77.582389,
+    lat: 13.059883,
+    lng: 77.582389,
     icon: 'https://maps.google.com/mapfiles/kml/paddle/4-lv.png',
     filter_by: ['Pool', 'Snooker'],
     sportsAvailable: [
@@ -220,21 +223,23 @@ const venues = [
         ],
       },
     ],
-    image:"https://playo.gumlet.io/OVALNETBADMINTONACADEMY/OvalNetBadmintonAcademy6.jpg?mode=crop&crop=smart&h=200&width=450&q=75",
+    image:
+      'https://playo.gumlet.io/OVALNETBADMINTONACADEMY/OvalNetBadmintonAcademy6.jpg?mode=crop&crop=smart&h=200&width=450&q=75',
     location:
       'No. 27, Museum Rd, Shanthala Nagar, Ashok Nagar, Bengaluru, Karnataka',
-    address:"No. 3/1, Kodigehalli Main Road, Adjacent to Cauvery College",
+    address: 'No. 3/1, Kodigehalli Main Road, Adjacent to Cauvery College',
     bookings: [],
   },
   {
     name: 'OvalNet Badminton Academy - Sahakar Nagar',
     rating: 4,
-    deferLink: "https://z34v4.app.goo.gl/MAAX",
-    fullLink: "https://playo.co/venue/?venueId=afbe7186-2f86-4215-8715-4b967f166b09",
+    deferLink: 'https://z34v4.app.goo.gl/MAAX',
+    fullLink:
+      'https://playo.co/venue/?venueId=afbe7186-2f86-4215-8715-4b967f166b09',
     avgRating: 4,
     ratingCount: 3,
-    "lat": 13.059883,
-    "lng": 77.582389,
+    lat: 13.059883,
+    lng: 77.582389,
     icon: 'https://maps.google.com/mapfiles/kml/paddle/4-lv.png',
     filter_by: ['Pool', 'Snooker'],
     sportsAvailable: [
@@ -299,17 +304,19 @@ const venues = [
         ],
       },
     ],
-    image:"https://playo.gumlet.io/OVALNETBADMINTONACADEMY/OvalNetBadmintonAcademy6.jpg?mode=crop&crop=smart&h=200&width=450&q=75",
+    image:
+      'https://playo.gumlet.io/OVALNETBADMINTONACADEMY/OvalNetBadmintonAcademy6.jpg?mode=crop&crop=smart&h=200&width=450&q=75',
     location:
       'No. 27, Museum Rd, Shanthala Nagar, Ashok Nagar, Bengaluru, Karnataka',
-    address:"No. 3/1, Kodigehalli Main Road, Adjacent to Cauvery College",
+    address: 'No. 3/1, Kodigehalli Main Road, Adjacent to Cauvery College',
     bookings: [],
   },
   {
     name: 'Play Zone - Sahakarnagar (Shree Vayu Badminton Arena)',
     rating: 4,
-    fullLink: "https://playo.co/venue?venueId=6bb450c0-318b-49e5-b7c0-c02a37d34ef8",
-    deferLink: "https://z34v4.app.goo.gl/4Kqo",
+    fullLink:
+      'https://playo.co/venue?venueId=6bb450c0-318b-49e5-b7c0-c02a37d34ef8',
+    deferLink: 'https://z34v4.app.goo.gl/4Kqo',
     avgRating: 4,
     ratingCount: 3,
     lat: 13.053750730700056,
@@ -378,17 +385,20 @@ const venues = [
         ],
       },
     ],
-    image:"https://playo.gumlet.io/PLAYZONESAHAKARNAGARSHREEVAYUBADMINTONARENA20231206074712995440/PlayZoneSahakarnagarShreeVayuBadmintonArena1701880566748.jpeg?mode=crop&crop=smart&h=200&width=450&q=75",
+    image:
+      'https://playo.gumlet.io/PLAYZONESAHAKARNAGARSHREEVAYUBADMINTONARENA20231206074712995440/PlayZoneSahakarnagarShreeVayuBadmintonArena1701880566748.jpeg?mode=crop&crop=smart&h=200&width=450&q=75',
     location:
       'No. 27, Museum Rd, Shanthala Nagar, Ashok Nagar, Bengaluru, Karnataka',
-    address:"Sahakar Nagar road, Adjacent to AMCO layout and Tata Nagar, Hebbal",
+    address:
+      'Sahakar Nagar road, Adjacent to AMCO layout and Tata Nagar, Hebbal',
     bookings: [],
   },
   {
     name: 'VIN Badminton',
     rating: 4,
-    deferLink: "https://z34v4.app.goo.gl/RTF4",
-    fullLink: "https://playo.co/venue/?venueId=37f3675b-dfd2-4f30-8506-a3883abef902",
+    deferLink: 'https://z34v4.app.goo.gl/RTF4',
+    fullLink:
+      'https://playo.co/venue/?venueId=37f3675b-dfd2-4f30-8506-a3883abef902',
     avgRating: 4,
     ratingCount: 3,
     lat: 13.071497063988476,
@@ -457,17 +467,19 @@ const venues = [
         ],
       },
     ],
-    image:"https://playo.gumlet.io/VINI5BADMINTONARENA20240226042742110513/Vini5BadmintonArena1709376498394.jpg?mode=crop&crop=smart&h=200&width=450&q=75",
+    image:
+      'https://playo.gumlet.io/VINI5BADMINTONARENA20240226042742110513/Vini5BadmintonArena1709376498394.jpg?mode=crop&crop=smart&h=200&width=450&q=75',
     location:
       'No. 27, Museum Rd, Shanthala Nagar, Ashok Nagar, Bengaluru, Karnataka',
-    address:"Vini5 badminton arena, 5th main road, Canara bank layout",
+    address: 'Vini5 badminton arena, 5th main road, Canara bank layout',
     bookings: [],
   },
   {
     name: 'Serve & Smash Badminton Academy',
     rating: 4,
-    fullLink: "https://playo.co/venue?venueId=a0c6ceb4-d09b-4fcf-bafd-6c949a55590c",
-    deferLink: "https://z34v4.app.goo.gl/3k9a",
+    fullLink:
+      'https://playo.co/venue?venueId=a0c6ceb4-d09b-4fcf-bafd-6c949a55590c',
+    deferLink: 'https://z34v4.app.goo.gl/3k9a',
     avgRating: 4,
     ratingCount: 3,
     lat: 13.045735,
@@ -536,10 +548,11 @@ const venues = [
         ],
       },
     ],
-    image:"https://playo.gumlet.io/SERVESMASH20191003055000886885/ServeSmash0.jpeg?mode=crop&crop=smart&h=200&width=450&q=75",
+    image:
+      'https://playo.gumlet.io/SERVESMASH20191003055000886885/ServeSmash0.jpeg?mode=crop&crop=smart&h=200&width=450&q=75',
     location:
       'No. 27, Museum Rd, Shanthala Nagar, Ashok Nagar, Bengaluru, Karnataka',
-    address:"1st Cross, RMV 2nd Stage, Nagashettihalli bangalore",
+    address: '1st Cross, RMV 2nd Stage, Nagashettihalli bangalore',
     bookings: [],
   },
   // Will Add more venues as need
@@ -568,10 +581,39 @@ addVenues().catch(err => {
 app.get('/venues', async (req, res) => {
   try {
     const venues = await Venue.find({});
-    console.log("ven",venues)
+    console.log('ven', venues);
     res.status(200).json(venues);
   } catch (error) {
     console.error(error);
     res.status(500).json({message: 'Failed to fetch venues'});
+  }
+});
+
+app.post('/creategame', async (req, res) => {
+  try {
+    const {sport, area, date, time, admin, totalPlayers} = req.body;
+
+    const activityAccess = 'public';
+
+    console.log('sport', sport);
+    console.log(area);
+    console.log(date);
+    console.log(admin);
+
+    const newGame = new Game({
+      sport,
+      area,
+      date,
+      time,
+      admin,
+      totalPlayers,
+      players: [admin],
+    });
+
+    const savedGame = await newGame.save();
+    res.status(200).json(savedGame);
+  } catch (err) {
+    console.error(err);
+    res.status(500).json({message: 'Failed to create game'});
   }
 });

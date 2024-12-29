@@ -24,6 +24,7 @@ import {useContext} from 'react';
 import CreateActivity from '../screens/CreateActivity';
 import TagVenueScreen from '../screens/TagVenueScreen';
 import SelectTimeScreen from '../screens/SelectTimeScreen';
+import GameSetUpScreen from '../screens/GameSetUpScreen'
 
 const StackNavigator = () => {
   const Stack = createNativeStackNavigator();
@@ -131,6 +132,10 @@ const StackNavigator = () => {
         <Stack.Screen
           name="Time"
           component={SelectTimeScreen}
+        />
+        <Stack.Screen
+          name="Game"
+          component={GameSetUpScreen}
         />
       </Stack.Navigator>
     );

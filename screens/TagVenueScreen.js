@@ -58,7 +58,7 @@ import {
           style={{
             padding: 10,
             backgroundColor: '#294461',
-            paddingBottom: 20,
+            paddingBottom: 10,
           }}
         >
           <View

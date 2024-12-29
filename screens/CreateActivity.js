@@ -15,6 +15,7 @@ import AntDesgin from 'react-native-vector-icons/AntDesign';
 import Entypo from 'react-native-vector-icons/Entypo';
 import Feather from 'react-native-vector-icons/Feather';
 import FontAwesome5 from 'react-native-vector-icons/FontAwesome5';
+import {useNavigation} from '@react-navigation/native';
 
 const CreateActivity = () => {
   const [sport, setSport] = useState('');
@@ -24,6 +25,7 @@ const CreateActivity = () => {
   const [noOfPlayers, setnoOfPlayers] = useState(0);
   const [timeInterval, setTimeInterval] = useState('');
   const [selected, setSelected] = useState(['Public']);
+  const navigation = useNavigation();
   return (
     <SafeAreaView
       style={{
@@ -63,6 +65,7 @@ const CreateActivity = () => {
           {/* Below This is a horizontal line  */}
           <Text style={{borderColor: '#E0E0E0', borderWidth: 1, height: 1}} />
           <Pressable
+          onPress={() => navigation.navigate('TagVenue')}
             style={{
               flexDirection: 'row',
               alignItems: 'center',

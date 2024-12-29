@@ -27,6 +27,7 @@ import SelectTimeScreen from '../screens/SelectTimeScreen';
 import GameSetUpScreen from '../screens/GameSetUpScreen';
 import PlayersScreen from '../screens/PlayersScreen';
 import ProfileDetailScreen from '../screens/ProfileDetailScreen';
+import ManageRequests from '../screens/ManageRequests';
 
 const StackNavigator = () => {
   const Stack = createNativeStackNavigator();
@@ -176,6 +177,11 @@ const StackNavigator = () => {
         <Stack.Screen
           name="Players"
           component={PlayersScreen}
+          options={{headerShown: false}}
+        />
+        <Stack.Screen
+          name="Manage"
+          component={ManageRequests}
           options={{headerShown: false}}
         />
         <Stack.Screen name="ProfileDetail" component={ProfileDetailScreen} />

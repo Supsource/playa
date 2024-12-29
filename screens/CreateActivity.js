@@ -101,10 +101,10 @@ const CreateActivity = () => {
   const createGame = async () => {
     try {
       console.log('Admin userId:', userId); // Log the correct admin userId
-     const admin = userId;
+      const admin = userId;
       const time = timeInterval;
       const gameData = {
-        admin: userId, 
+        admin,
         sport,
         area: taggedVenue || area,
         date,
@@ -166,7 +166,7 @@ const CreateActivity = () => {
               Create Activity
             </Text>
             <Pressable
-              onPress={() => navigation.navigate('Sport', {
+              onPress={() => navigation.navigate('PlayScreen', {
                 sport,
                 area: taggedVenue || area,
                 date,

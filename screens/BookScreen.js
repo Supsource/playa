@@ -1,11 +1,26 @@
-import { SafeAreaView, StyleSheet, Text, View, Image, TextInput, Pressable, FlatList } from 'react-native'
-import React from 'react'
+import {
+  StyleSheet,
+  Text,
+  View,
+  ScrollView,
+  SafeAreaView,
+  Image,
+  TextInput,
+  Pressable,
+  FlatList,
+} from 'react-native';
+import React, {useEffect, useState} from 'react';
 import MaterialIcons from 'react-native-vector-icons/MaterialIcons';
 import Ionicons from 'react-native-vector-icons/Ionicons';
+import Feather from 'react-native-vector-icons/Feather';
+import AntDesign from 'react-native-vector-icons/AntDesign';
 import VenueCard from '../components/VenueCard';
+import axios from 'axios';
+import {useNavigation} from '@react-navigation/native';
 
 const BookScreen = () => {
-  const venues =[
+  const [user, setUser] = useState('');
+  const data = [
     {
       id: '0',
       name: "DDSA - St.Joseph's Boys' High School (European)",
@@ -13,7 +28,7 @@ const BookScreen = () => {
       newImage:
         'https://images.pexels.com/photos/3660204/pexels-photo-3660204.jpeg?auto=compress&cs=tinysrgb&w=800',
       image:
-        'https://media.hudle.in/photos/47397',
+        'https://playo.gumlet.io/DDSASTJOSEPHSBOYSHIGHSCHOOLEUROPEANS20220919091705834667/DDSAStJosephsBoysHighSchoolEuropeans1666166846682.jpg?mode=crop&crop=smart&h=200&width=450&q=40&format=webp',
       location:
         'No. 27, Museum Rd, Shanthala Nagar, Ashok Nagar, Bengaluru, Karnataka',
       rating: 3.6,
@@ -190,52 +205,124 @@ const BookScreen = () => {
         },
       ],
     },
-  ]
+  ];
+
+  const [venues, setVenues] = useState([]);
+
+  const navigation = useNavigation();
+
+  useEffect(() => {
+    const fetchVenues = async () => {
+      try {
+        const response = await axios.get('http://localhost:3000/venues');
+        setVenues(response.data);
+      } catch (error) {
+        console.error('Failed to fetch venues:', error);
+      }
+    };
+
+    fetchVenues();
+  }, []);
   return (
-    <SafeAreaView>
-     <View style={{flexDirection:"row", alignItems:"center", justifyContent:'space-between', padding: 12}}>
-      <View style={{flexDirection:'row', alignItems:"center", gap:4}}>
-        <Text>Bidhannagar</Text>
-        <MaterialIcons name="keyboard-arrow-down" size={24} color="black" />
-      </View>
-      <View style={{flexDirection:'row', alignItems:'center', gap:10}}>
-      <Ionicons name="chatbox-outline" size={24} color="black" />
-      <Ionicons name="notifications-outline" size={24} color="black" />
+    <SafeAreaView style={{flex: 1, backgroundColor: '#f5f5f5'}}>
+      <View
+        style={{
+          flexDirection: 'row',
+          alignItems: 'center',
+          justifyContent: 'space-between',
+          padding: 12,
+        }}>
+        <View style={{flexDirection: 'row', alignItems: 'center', gap: 5}}>
+          <Text style={{fontSize: 16, fontWeight: '500'}}>Sahakar Nagar</Text>
+          <MaterialIcons name="keyboard-arrow-down" size={24} color="black" />
+        </View>
 
-      <Image
-          style={{width:30, height:30, borderRadius:15}}
-          source={{
-            uri: 'https://avatars.githubusercontent.com/u/72860690?v=4'
-          }}
-          />
+        <View
+          style={{
+            flexDirection: 'row',
+            alignItems: 'center',
+            gap: 10,
+          }}>
+          <Ionicons name="chatbox-outline" size={24} color="black" />
+          <Ionicons name="notifications-outline" size={24} color="black" />
+
+          <View>
+            {/* <Image
+              style={{width: 30, height: 30, borderRadius: 15}}
+              source={{
+                uri: 'https://lh3.googleusercontent.com/ogw/AF2bZyi09EC0vkA0pKVqrtBq0Y-SLxZc0ynGmNrVKjvV66i3Yg=s64-c-mo',
+              }} */}
+            <Image
+              style={{width: 30, height: 30, borderRadius: 15}}
+              source={{uri: user?.user?.image}}
+            />
+          </View>
+        </View>
       </View>
-     </View>
-     <View style={{marginHorizontal:12, backgroundColor:'#E8E8E8', padding:12, flexDirection:'row', alignItems:'center', justifyContent:'space-between', borderRadius: 25}}>
-      <TextInput placeholder='Search for Venues'/>
-      <Ionicons name="search" size={24} color="gray" />
-     </View>
-        <Pressable style={{flexDirection:'row', alignItems:"center", gap: 10,padding:13}}>
-          <View style={{padding: 10, borderRadius:10, borderColor: '#E0E0E0', borderWidth: 1}}>
-            <Text>Sports and Availability</Text>
-            </View>
-            <View style={{padding: 10, borderRadius:10, borderColor: '#E0E0E0', borderWidth: 1}}> 
-            <Text>Favorites</Text>
-            </View>
-            <View>
-            <Text style={{padding: 10, borderRadius:10, borderColor: '#E0E0E0', borderWidth: 1}}>Offers</Text>
-            </View>
-        </Pressable>
-        <FlatList 
-  data={venues} 
-  renderItem={({item}) => <VenueCard item={item} />}
-  contentContainerStyle={{paddingBottom: 20}}
-  showsHorizontalScrollIndicator={false}
-  keyExtractor={(item) => item.id}
-/>
+
+      <View
+        style={{
+          marginHorizontal: 12,
+          backgroundColor: '#E8E8E8',
+          padding: 12,
+          flexDirection: 'row',
+          alignItems: 'center',
+          justifyContent: 'space-between',
+          borderRadius: 25,
+        }}>
+        <TextInput placeholder="Search For Venues" />
+        <Ionicons name="search" size={24} color="gray" />
+      </View>
+
+      <Pressable
+        style={{
+          flexDirection: 'row',
+          alignItems: 'center',
+          gap: 10,
+          padding: 13,
+        }}>
+        <View
+          style={{
+            padding: 10,
+            borderRadius: 10,
+            borderColor: '#E0E0E0',
+            borderWidth: 2,
+          }}>
+          <Text>Sports & Availabilty</Text>
+        </View>
+
+        <View
+          style={{
+            padding: 10,
+            borderRadius: 10,
+            borderColor: '#E0E0E0',
+            borderWidth: 2,
+          }}>
+          <Text>Favorites</Text>
+        </View>
+
+        <View
+          style={{
+            padding: 10,
+            borderRadius: 10,
+            borderColor: '#E0E0E0',
+            borderWidth: 2,
+          }}>
+          <Text>Offers</Text>
+        </View>
+      </Pressable>
+
+      <FlatList
+        showsVerticalScrollIndicator={false}
+        // data={data}
+        data={venues}
+        renderItem={({item}) => <VenueCard item={item} />}
+        contentContainerStyle={{paddingBottom: 20}}
+      />
     </SafeAreaView>
-  )
-}
+  );
+};
 
-export default BookScreen
+export default BookScreen;
 
-const styles = StyleSheet.create({})
+const styles = StyleSheet.create({});

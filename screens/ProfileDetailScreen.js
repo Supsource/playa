@@ -1,4 +1,4 @@
-import { Image, Pressable, StyleSheet, Text, View } from 'react-native';
+import { Image, Pressable, SafeAreaView, StyleSheet, Text, View } from 'react-native';
 import React, { useContext, useEffect, useState } from 'react';
 import axios from 'axios';
 import { AuthContext } from '../AuthContext';
@@ -37,6 +37,7 @@ const ProfileDetailScreen = () => {
   };
 
   return (
+    <SafeAreaView style={{paddingTop: Platform.OS === 'android' ? 35 : 0}}>
     <View style={styles.container}>
       <View style={styles.profileCard}>
         <View style={styles.header}>
@@ -68,6 +69,7 @@ const ProfileDetailScreen = () => {
         </View>
       </View>
     </View>
+    </SafeAreaView>
   );
 };
 

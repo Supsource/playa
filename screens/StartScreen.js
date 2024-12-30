@@ -97,7 +97,7 @@ const StartScreen = () => {
 
   return (
     <>
-    <SafeAreaView>
+    <SafeAreaView style={{paddingTop: Platform.OS === 'android' ? 35 : 0}}>
       <MapView
         ref={mapView}
         style={{ width: '100%', height: 400 }}

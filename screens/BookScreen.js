@@ -55,7 +55,7 @@ const BookScreen = () => {
   }, []);
 
   return (
-    <SafeAreaView style={{ flex: 1, backgroundColor: '#f5f5f5' }}>
+    <SafeAreaView style={{ flex: 1, backgroundColor: '#f5f5f5', paddingTop: Platform.OS === 'android' ? 35 : 0 }}>
       <View
         style={{
           flexDirection: 'row',

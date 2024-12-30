@@ -9,6 +9,7 @@ const SplashScreen = () => {
         flex: 1,
         justifyContent: 'center',
         alignItems: 'center',
+        paddingTop: Platform.OS === 'android' ? 35 : 0
       }}>
       <View>
         <Image

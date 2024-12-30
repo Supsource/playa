@@ -52,7 +52,7 @@ const SelectImage = () => {
 
   return (
     <>
-      <SafeAreaView style={{flex: 1, backgroundColor: 'white'}}>
+      <SafeAreaView style={{flex: 1, backgroundColor: 'white', paddingTop: Platform.OS === 'android' ? 35 : 0}}>
         <View style={{marginHorizontal: 10}}>
           <Ionicons
             onPress={() => navigation.goBack()}

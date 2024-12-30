@@ -7,7 +7,7 @@ import MaterialIcons from 'react-native-vector-icons/MaterialIcons';
 import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons';
 const ProfileScreen = () => {
   return (
-    <SafeAreaView>
+    <SafeAreaView style={{paddingTop: Platform.OS === 'android' ? 35 : 0}}>
       <ScrollView>
         <View style={{padding: 12}}>
           <View

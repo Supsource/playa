@@ -143,7 +143,7 @@ const HomeScreen = () => {
   console.log('user', upcomingGames?.length);
 
   return (
-    <ScrollView style={{flex: 1, backgroundColor: '#F8F8F8'}}>
+    <ScrollView style={{flex: 1, backgroundColor: '#F8F8F8', paddingTop: Platform.OS === 'android' ? 35 : 0}}>
       <View
         style={{
           padding: 13,

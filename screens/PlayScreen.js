@@ -83,7 +83,7 @@ const PlayScreen = () => {
     }
   };
   return (
-    <SafeAreaView>
+    <SafeAreaView style={{paddingTop: Platform.OS === 'android' ? 35 : 0}}>
       <View style={{padding: 12, backgroundColor: '#223537'}}>
         <View
           style={{

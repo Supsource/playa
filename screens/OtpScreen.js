@@ -51,7 +51,7 @@ const OtpScreen = () => {
     }
   };
   return (
-    <SafeAreaView style={{flex: 1, backgroundColor: 'white'}}>
+    <SafeAreaView style={{flex: 1, backgroundColor: 'white', paddingTop: Platform.OS === 'android' ? 35 : 0}}>
       <View style={{padding: 15}}>
         <Text style={styles.title}>Enter OTP</Text>
         <View style={styles.otpContainer}>

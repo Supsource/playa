@@ -79,7 +79,7 @@ const PreFinalScreen = () => {
     }
   };
   return (
-    <SafeAreaView style={{flex: 1, backgroundColor: 'white'}}>
+    <SafeAreaView style={{flex: 1, backgroundColor: 'white', paddingTop: Platform.OS === 'android' ? 35 : 0}}>
       <View style={{marginTop: 80}}>
         <Text
           style={{

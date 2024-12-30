@@ -155,7 +155,7 @@ const GameSetUpScreen = () => {
 
   return (
     <>
-      <SafeAreaView>
+      <SafeAreaView style={{paddingTop: Platform.OS === 'android' ? 35 : 0}}>
         <ScrollView>
           <View
             style={{

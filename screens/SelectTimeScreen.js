@@ -1,5 +1,5 @@
 import React, { useState, useLayoutEffect } from 'react';
-import { View, Text, StyleSheet, Pressable, Button } from 'react-native';
+import { View, Text, StyleSheet, Pressable, Button, SafeAreaView } from 'react-native';
 import { useNavigation, useRoute } from '@react-navigation/native';
 import Ionicons from 'react-native-vector-icons/Ionicons';
 import Feather from 'react-native-vector-icons/Feather';
@@ -112,6 +112,7 @@ const SelectTimeScreen = () => {
   }, [navigation]);
 
   return (
+    <SafeAreaView style={{paddingTop: Platform.OS === 'android' ? 35 : 0}}>
     <View style={styles.container}>
       <View style={styles.timeSlotsContainer}>
         {times.map((item) => (
@@ -160,6 +161,7 @@ const SelectTimeScreen = () => {
         </View>
       )}
     </View>
+    </SafeAreaView>
   );
 };
 

@@ -308,7 +308,7 @@ const GameSetUpScreen = () => {
                 resizeMode: 'cover',
               }}
               source={{
-                uri: 'https://raw.githubusercontent.com/Supsource/playa/refs/heads/main/medias/PlayaBanner.png?token=GHSAT0AAAAAACYQFB3WLCURXFANOIFIBRA2Z3RULEQ',
+                uri: 'https://pbs.twimg.com/media/Gf_X2QeWgAAJrfP?format=jpg&name=large',
               }}
             />
           </View>

@@ -41,7 +41,7 @@ const OtpScreen = () => {
   const verifyOTP = async () => {
     const email = route?.params?.email;
     try {
-      const response = await axios.post(`http://localhost:8000/verify-otp`, { email, otp });
+      const response = await axios.post(`https://playa-z9fh.onrender.com/verify-otp`, { email, otp });
       if (response.status === 200) {
         Alert.alert('Success', 'User verified successfully');
       }

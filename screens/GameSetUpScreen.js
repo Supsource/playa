@@ -169,7 +169,7 @@ const GameSetUpScreen = () => {
                 alignItems: 'center',
                 justifyContent: 'space-between',
               }}>
-              <Ionicons name="arrow-back" size={24} color="white" />
+              <Ionicons onPress={() => navigation.goBack()} name="arrow-back" size={24} color="white" />
 
               <View
                 style={{flexDirection: 'row', alignItems: 'center', gap: 10}}>

@@ -66,7 +66,7 @@ const BookScreen = () => {
       >
         <View style={{ flexDirection: 'row', alignItems: 'center', gap: 5 }}>
           <Text style={{ fontSize: 16, fontWeight: '500' }}>Sahakar Nagar</Text>
-          <MaterialIcons name="keyboard-arrow-down" size={24} color="black" />
+          <MaterialIcons onPress={() => navigation.goBack()} name="keyboard-arrow-down" size={24} color="black" />
         </View>
 
         <View

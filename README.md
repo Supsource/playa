@@ -1,7 +1,8 @@
 <p align="center">
 <img alt="playa" src="https://github.com/Supsource/playa/blob/main/medias/Playa.png" width="160" />
   </p>
-Playa is a mobile application designed to make sports accessible and fun by helping people find players nearby. Whether you're starting a game, joining an existing one, or booking a venue, Playa simplifies the process. Built in less than a month for the NotJustHack hackathon, it’s an innovative solution for connecting sports enthusiasts.
+  
+Playa is a mobile application designed to make sports accessible and fun by helping people find players nearby. Whether you're starting a game, joining an existing one, or booking a venue, Playa simplifies the process. Built in less than a month for the **[NotJustHack](https://www.notjusthack.com/)** hackathon, it’s an innovative solution for connecting sports enthusiasts.
 
 ## 🌟 Why Playa?
 * **Easy to Use :** A simple and friendly interface to help you find players and games effortlessly. </br>
@@ -51,5 +52,5 @@ Playa is your one-stop app for making sports fun and accessible for everyone.
 
 
 <p align="center">
-  <img alt="Playa Banner" src="https://raw.githubusercontent.com/Supsource/playa/refs/heads/main/medias/PlayaBanner.png?token=GHSAT0AAAAAACYQFB3XP4ULVYOFRSVWL446Z3RUQJQ">
+  <img alt="Playa Banner" src="https://pbs.twimg.com/media/Gf_X2QeWgAAJrfP?format=jpg&name=large">
 </p>

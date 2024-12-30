@@ -1,8 +1,9 @@
-import { Image, Pressable, StyleSheet, Text, View } from 'react-native';
+import {Image, Pressable, StyleSheet, Text, View} from 'react-native';
 import React from 'react';
-import { useNavigation } from '@react-navigation/native';
+import {useNavigation} from '@react-navigation/native';
 
-const UpComingGame = ({ item }) => {
+const UpComingGame = ({item}) => {
+  console.log('item', item);
   const navigation = useNavigation();
   return (
     <Pressable
@@ -11,45 +12,116 @@ const UpComingGame = ({ item }) => {
           item: item,
         })
       }
-      style={styles.container}>
-      <Text style={styles.dateText}>{item?.date}</Text>
+      style={{
+        backgroundColor: 'white',
+        padding: 12,
+        borderBottomColor: '#E0E0E0',
+        borderBottomWidth: 2,
+        marginBottom: 20,
+      }}>
+      <Text
+        style={{
+          marginVertical: 7,
+          borderBottomColor: '#E0E0E0',
+          borderBottomWidth: 2,
+          color: 'blue',
+        }}>
+        {item?.date}
+      </Text>
 
-      <View style={styles.mainContent}>
+      <View
+        style={{
+          flexDirection: 'row',
+          gap: 10,
+          backgroundColor: 'white',
+          marginTop: 12,
+        }}>
         {/* Admin Image */}
-        <View style={styles.imageContainer}>
+        <View>
           <Image
-            style={styles.image}
-            source={{ uri: item?.adminUrl }}
+            style={{width: 40, height: 40, borderRadius: 20}}
+            source={{uri: item?.adminUrl}}
           />
         </View>
 
         {/* Main Content */}
-        <View style={styles.content}>
-          <Text style={styles.title}>{item?.adminName}'s Badminton Game</Text>
+        <View style={{flex: 1}}>
+          <Text
+            style={{
+              fontSize: 15,
+              fontWeight: '600',
+              flexWrap: 'wrap', // Allow text to wrap if it overflows
+              marginBottom: 6,
+            }}>
+            {item?.adminName}'s Badminton Game
+          </Text>
 
-          <Text style={styles.areaText} numberOfLines={2}>
+          <Text
+            style={{
+              color: 'gray',
+              marginBottom: 10,
+              flexShrink: 1, // Allow text to shrink if it overflows
+            }}
+            numberOfLines={2} // Limit the number of lines to prevent overflow
+          >
             {item?.area}
           </Text>
 
-          <View style={item?.isBooked ? styles.bookedContainer : styles.availableContainer}>
+          <View
+            style={{
+              marginVertical: 10,
+              padding: item?.isBooked ? 0 : 15,
+              borderRadius: 8,
+              borderColor: '#E0E0E0',
+              borderWidth: 1,
+              width: '100%', // Take full width of its parent container
+            }}>
             {item?.isBooked ? (
               <>
-                <Text style={styles.courtNumberText}>{item?.courtNumber}</Text>
+                <Text
+                  style={{
+                    textAlign: 'center',
+                    fontWeight: '500',
+                    fontSize: 13,
+                    paddingVertical: 10,
+                  }}>
+                  {item?.courtNumber}
+                </Text>
 
-                <View style={styles.bookedStatus}>
-                  <Text style={styles.bookedText}>Booked</Text>
+                <View
+                  style={{
+                    justifyContent: 'center',
+                    alignItems: 'center',
+                    backgroundColor: '#56cc79',
+                    paddingVertical: 5,
+                  }}>
+                  <Text
+                    style={{fontSize: 13, fontWeight: '500', color: 'white'}}>
+                    Booked
+                  </Text>
                 </View>
               </>
             ) : (
-              <Text style={styles.timeText}>{item?.time}</Text>
+              <Text style={{textAlign: 'center', fontWeight: '500'}}>
+                {item?.time}
+              </Text>
             )}
           </View>
         </View>
 
         {/* Player Count */}
-        <View style={styles.playerCountContainer}>
-          <Text style={styles.playerCountText}>{item?.players?.length}</Text>
-          <Text style={styles.goingText}>GOING</Text>
+        <View
+          style={{
+            alignItems: 'center',
+            justifyContent: 'center',
+            marginLeft: 10,
+          }}>
+          <Text style={{fontSize: 20, fontWeight: 'bold'}}>
+            {item?.players?.length}
+          </Text>
+          <Text style={{fontSize: 16, fontWeight: '600', marginTop: 10}}>
+            GOING
+          </Text>
         </View>
       </View>
     </Pressable>
@@ -58,102 +130,4 @@ const UpComingGame = ({ item }) => {
 
 export default UpComingGame;
 
-const styles = StyleSheet.create({
-  container: {
-    backgroundColor: 'white',
-    padding: 12,
-    borderBottomColor: '#E0E0E0',
-    borderBottomWidth: 2,
-    marginBottom: 20,
-    borderRadius: 10,
-  },
-  dateText: {
-    marginVertical: 7,
-    borderBottomColor: '#E0E0E0',
-    borderBottomWidth: 2,
-    color: '#56cc79',
-    fontWeight: '600',
-  },
-  mainContent: {
-    flexDirection: 'row',
-    gap: 10,
-    marginTop: 12,
-  },
-  imageContainer: {
-    borderRadius: 20,
-    overflow: 'hidden',
-  },
-  image: {
-    width: 40,
-    height: 40,
-  },
-  content: {
-    flex: 1,
-  },
-  title: {
-    fontSize: 16,
-    fontWeight: '600',
-    marginBottom: 6,
-    color: '#333',
-  },
-  areaText: {
-    color: 'gray',
-    marginBottom: 10,
-    flexShrink: 1,
-  },
-  bookedContainer: {
-    marginVertical: 10,
-    padding: 15,
-    borderRadius: 8,
-    borderColor: '#E0E0E0',
-    borderWidth: 1,
-    backgroundColor: '#f1f1f1',
-  },
-  availableContainer: {
-    marginVertical: 10,
-    padding: 15,
-    borderRadius: 8,
-    borderColor: '#E0E0E0',
-    borderWidth: 1,
-  },
-  courtNumberText: {
-    textAlign: 'center',
-    fontWeight: '500',
-    fontSize: 13,
-    paddingVertical: 10,
-  },
-  bookedStatus: {
-    justifyContent: 'center',
-    alignItems: 'center',
-    backgroundColor: '#56cc79',
-    paddingVertical: 5,
-    borderRadius: 8,
-  },
-  bookedText: {
-    fontSize: 13,
-    fontWeight: '500',
-    color: 'white',
-  },
-  timeText: {
-    textAlign: 'center',
-    fontWeight: '500',
-    fontSize: 15,
-    color: '#333',
-  },
-  playerCountContainer: {
-    alignItems: 'center',
-    justifyContent: 'center',
-    marginLeft: 10,
-  },
-  playerCountText: {
-    fontSize: 20,
-    fontWeight: 'bold',
-    color: '#333',
-  },
-  goingText: {
-    fontSize: 16,
-    fontWeight: '600',
-    marginTop: 10,
-    color: '#333',
-  },
-});
+const styles = StyleSheet.create({});

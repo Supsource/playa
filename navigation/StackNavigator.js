@@ -28,6 +28,8 @@ import GameSetUpScreen from '../screens/GameSetUpScreen';
 import PlayersScreen from '../screens/PlayersScreen';
 import ProfileDetailScreen from '../screens/ProfileDetailScreen';
 import ManageRequests from '../screens/ManageRequests';
+import SlotScreen from '../screens/SlotScreen';
+import PaymentScreen from '../screens/PaymentScreen';
 
 const StackNavigator = () => {
   const Stack = createNativeStackNavigator();
@@ -124,6 +126,11 @@ const StackNavigator = () => {
           component={NameScreen}
           options={{headerShown: false}}
         />
+         <Stack.Screen
+          name="Payment"
+          component={PaymentScreen}
+          options={{headerShown: false}}
+        />
         <Stack.Screen
           name="Image"
           component={SelectImgScreen}
@@ -159,8 +166,9 @@ const StackNavigator = () => {
             sport: '',
             area: '',
             date: '',
-            timeInterval: '',
+            timeInterval: '', // Ensure this is correctly set
             noOfPlayers: 0,
+            game: '', // Add default value for game
           }}
         />
         <Stack.Screen
@@ -184,7 +192,20 @@ const StackNavigator = () => {
           component={ManageRequests}
           options={{headerShown: false}}
         />
-        <Stack.Screen name="ProfileDetail" component={ProfileDetailScreen} />
+        <Stack.Screen
+          name="Slot"
+          component={SlotScreen}
+          options={{headerShown: false}}
+        />
+        <Stack.Screen
+          name="ProfileDetail"
+          component={ProfileDetailScreen}
+        />
+        <Stack.Screen
+          name="Payment"
+          component={PaymentScreen}
+          options={{headerShown: false}}
+        />
       </Stack.Navigator>
     );
   }

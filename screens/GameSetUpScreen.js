@@ -326,7 +326,7 @@ const GameSetUpScreen = () => {
                 alignItems: 'center',
                 justifyContent: 'space-between',
               }}>
-              <Text style={{fontSize: 16, fontWeight: '600'}}>Players (2)</Text>
+              <Text style={{fontSize: 16, fontWeight: '600'}}>Players</Text>
 
               <Ionicons name="earth" size={24} color="gray" />
             </View>
@@ -581,9 +581,9 @@ const GameSetUpScreen = () => {
                   </View>
 
                   <View>
-                    <Text>Not on Playo? Invite</Text>
+                    <Text>Not on Playa? Invite</Text>
                     <Text style={{marginTop: 6, color: 'gray', width: '80%'}}>
-                      Earn 100 Karma points by referring your friend
+                      Earn 100 Game points by referring your friend
                     </Text>
                   </View>
                 </View>
@@ -651,7 +651,6 @@ const GameSetUpScreen = () => {
             </View>
           </View>
         </ScrollView>
-        {/* route?.params?.item?.isUserAdmin == true */}
       </SafeAreaView>
 
       {route?.params?.item?.isUserAdmin == true ? (

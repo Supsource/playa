@@ -8,6 +8,7 @@ import FontAwesome from 'react-native-vector-icons/FontAwesome';
 import Amenities from '../components/Amenities';
 
 const VenueInfoScreen = () => {
+  const navigation = useNavigation();
   const route = useRoute();
   console.log(route?.params);
   return (

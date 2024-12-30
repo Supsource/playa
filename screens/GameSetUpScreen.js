@@ -110,7 +110,9 @@ const GameSetUpScreen = () => {
   useEffect(() => {
     const fetchVenues = async () => {
       try {
-        const response = await axios.get('https://playa-z9fh.onrender.com/venues');
+        const response = await axios.get(
+          'https://playa-z9fh.onrender.com/venues',
+        );
         setVenues(response.data);
       } catch (error) {
         console.error('Failed to fetch venues:', error);
@@ -651,86 +653,17 @@ const GameSetUpScreen = () => {
             </View>
           </View>
         </ScrollView>
-      </SafeAreaView>
-
-      {route?.params?.item?.isUserAdmin == true ? (
-        <Pressable
-          style={{
-            backgroundColor: '#07bc0c',
-            marginTop: 'auto',
-            marginBottom: 30,
-            padding: 15,
-            marginHorizontal: 10,
-            borderRadius: 4,
-          }}>
-          <Text
-            style={{
-              textAlign: 'center',
-              color: 'white',
-              fontSize: 15,
-              fontWeight: '500',
-            }}>
-            GAME CHAT
-          </Text>
-        </Pressable>
-      ) : userRequested ? (
-        <Pressable
-          style={{
-            backgroundColor: 'red',
-            marginTop: 'auto',
-            marginBottom: 30,
-            padding: 15,
-            marginHorizontal: 10,
-            borderRadius: 4,
-          }}>
-          <Text
-            style={{
-              textAlign: 'center',
-              color: 'white',
-              fontSize: 15,
-              fontWeight: '500',
-            }}>
-            CANCEL REQUEST
-          </Text>
-        </Pressable>
-      ) : (
-        <View
-          style={{
-            marginTop: 'auto',
-            flexDirection: 'row',
-            alignItems: 'center',
-            paddingVertical: 12,
-            backgroundColor: '#E8E8E8',
-          }}>
+        {route?.params?.item?.isUserAdmin == true ? (
           <Pressable
-            style={{
-              backgroundColor: 'white',
-              marginTop: 'auto',
-              marginBottom: 30,
-              padding: 15,
-              marginHorizontal: 10,
-              borderRadius: 4,
-              flex: 1,
-            }}>
-            <Text
-              style={{
-                textAlign: 'center',
-                fontSize: 15,
-                fontWeight: '500',
-              }}>
-              SEND QUERY
-            </Text>
-          </Pressable>
-          <Pressable
-            onPress={() => setModalVisible(!modalVisible)}
             style={{
               backgroundColor: '#07bc0c',
-              marginTop: 'auto',
-              marginBottom: 30,
+              position: 'absolute',
+              bottom: 60, // Adjusted for higher positioning
+              left: 15,
+              right: 15,
               padding: 15,
               marginHorizontal: 10,
               borderRadius: 4,
-              flex: 1,
             }}>
             <Text
               style={{
@@ -739,83 +672,151 @@ const GameSetUpScreen = () => {
                 fontSize: 15,
                 fontWeight: '500',
               }}>
-              JOIN GAME
+              GAME CHAT
             </Text>
           </Pressable>
-        </View>
-      )}
-
-      <BottomModal
-        onBackdropPress={() => setModalVisible(!modalVisible)}
-        swipeDirection={['up', 'down']}
-        swipeThreshold={200}
-        modalAnimation={
-          new SlideAnimation({
-            slideFrom: 'bottom',
-          })
-        }
-        onHardwareBackPress={() => setModalVisible(!modalVisible)}
-        visible={modalVisible}
-        onTouchOutside={() => setModalVisible(!modalVisible)}>
-        <ModalContent
-          style={{width: '100%', height: 400, backgroundColor: 'white'}}>
-          <View>
-            <Text style={{fontSize: 15, fontWeight: '500', color: 'gray'}}>
-              Join Game
-            </Text>
-
-            <Text style={{marginTop: 25, color: 'gray'}}>
-              {route?.params?.item?.adminName} has been putting efforts to
-              organize this game. Please send the request if you are quite sure
-              to attend
-            </Text>
-
-            <View
+        ) : userRequested ? (
+          <Pressable
+            style={{
+              backgroundColor: 'red',
+              position: 'absolute',
+              bottom: 60, // Adjusted for higher positioning
+              left: 15,
+              right: 15,
+              padding: 15,
+              marginHorizontal: 10,
+              borderRadius: 4,
+            }}>
+            <Text
               style={{
-                borderColor: '#E0E0E0',
-                borderWidth: 1,
-                padding: 10,
-                borderRadius: 10,
-                height: 200,
-                marginTop: 20,
+                textAlign: 'center',
+                color: 'white',
+                fontSize: 15,
+                fontWeight: '500',
               }}>
-              <TextInput
-                value={comment}
-                // multiline
-                onChangeText={text => setComment(text)}
+              CANCEL REQUEST
+            </Text>
+          </Pressable>
+        ) : (
+          <View
+            style={{
+              flexDirection: 'row',
+              alignItems: 'center',
+              paddingVertical: 12,
+              backgroundColor: '#E8E8E8',
+              position: 'absolute',
+              bottom: 60, // Adjusted for higher positioning
+              left: 15,
+              right: 15,
+            }}>
+            <Pressable
+              style={{
+                backgroundColor: 'white',
+                flex: 1,
+                padding: 15,
+                marginHorizontal: 10,
+                borderRadius: 4,
+              }}>
+              <Text
                 style={{
-                  fontFamily: 'Helvetica',
-                  fontSize: comment ? 17 : 17,
-                }}
-                placeholder="Send a message to the host along with your request!"
-                //   placeholderTextColor={"black"}
-              />
-              <Pressable
-                onPress={() => sendJoinRequest(route?.params?.item?._id)}
-                style={{
-                  marginTop: 'auto',
-                  flexDirection: 'row',
-                  alignItems: 'center',
-                  gap: 15,
-                  backgroundColor: 'green',
-                  borderRadius: 5,
-                  justifyContent: 'center',
-                  padding: 10,
+                  textAlign: 'center',
+                  fontSize: 15,
+                  fontWeight: '500',
                 }}>
-                <Text
-                  style={{
-                    color: 'white',
-                    textAlign: 'center',
-                    fontSize: 15,
-                    fontWeight: '500',
-                  }}>
-                  Send Request
-                </Text>
-              </Pressable>
-            </View>
+                SEND QUERY
+              </Text>
+            </Pressable>
+            <Pressable
+              onPress={() => setModalVisible(!modalVisible)}
+              style={{
+                backgroundColor: '#07bc0c',
+                flex: 1,
+                padding: 15,
+                marginHorizontal: 10,
+                borderRadius: 4,
+              }}>
+              <Text
+                style={{
+                  textAlign: 'center',
+                  color: 'white',
+                  fontSize: 15,
+                  fontWeight: '500',
+                }}>
+                JOIN GAME
+              </Text>
+            </Pressable>
           </View>
-        </ModalContent>
-      </BottomModal>
+        )}
+
+        <BottomModal
+          onBackdropPress={() => setModalVisible(!modalVisible)}
+          swipeDirection={['up', 'down']}
+          swipeThreshold={200}
+          modalAnimation={
+            new SlideAnimation({
+              slideFrom: 'bottom',
+            })
+          }
+          onHardwareBackPress={() => setModalVisible(!modalVisible)}
+          visible={modalVisible}
+          onTouchOutside={() => setModalVisible(!modalVisible)}>
+          <ModalContent
+            style={{width: '100%', height: 400, backgroundColor: 'white'}}>
+            <View>
+              <Text style={{fontSize: 15, fontWeight: '500', color: 'gray'}}>
+                Join Game
+              </Text>
+
+              <Text style={{marginTop: 25, color: 'gray'}}>
+                {route?.params?.item?.adminName} has been putting efforts to
+                organize this game. Please send the request if you are quite
+                sure to attend.
+              </Text>
+
+              <View
+                style={{
+                  borderColor: '#E0E0E0',
+                  borderWidth: 1,
+                  padding: 10,
+                  borderRadius: 10,
+                  height: 200,
+                  marginTop: 20,
+                }}>
+                <TextInput
+                  value={comment}
+                  onChangeText={text => setComment(text)}
+                  style={{
+                    fontFamily: 'Helvetica',
+                    fontSize: 17,
+                  }}
+                  placeholder="Send a message to the host along with your request!"
+                />
+                <Pressable
+                  onPress={() => sendJoinRequest(route?.params?.item?._id)}
+                  style={{
+                    flexDirection: 'row',
+                    alignItems: 'center',
+                    justifyContent: 'center',
+                    backgroundColor: 'green',
+                    borderRadius: 5,
+                    padding: 10,
+                    marginTop: 20,
+                  }}>
+                  <Text
+                    style={{
+                      color: 'white',
+                      textAlign: 'center',
+                      fontSize: 15,
+                      fontWeight: '500',
+                    }}>
+                    Send Request
+                  </Text>
+                </Pressable>
+              </View>
+            </View>
+          </ModalContent>
+        </BottomModal>
+      </SafeAreaView>
     </>
   );
 };

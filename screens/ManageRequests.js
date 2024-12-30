@@ -32,7 +32,7 @@ import {
           userId: userId,
         };
         console.log(user);
-        const response = await axios.post('http://localhost:8000/accept', user);
+        const response = await axios.post('http://localhost:3000/accept', user);
   
         if (response.status === 200) {
           Alert.alert('Success', 'Request accepted');
@@ -57,7 +57,7 @@ import {
     const fetchRequests = async () => {
       try {
         const response = await axios.get(
-          `http://localhost:8000/games/${gameId}/requests`,
+          `http://localhost:3000/games/${gameId}/requests`,
         );
         setRequests(response.data);
       } catch (error) {
@@ -73,7 +73,7 @@ import {
     const fetchPlayers = async () => {
       try {
         const response = await axios.get(
-          `http://localhost:8000/game/${gameId}/players`,
+          `http://localhost:3000/game/${gameId}/players`,
         );
         setPlayers(response.data);
       } catch (error) {

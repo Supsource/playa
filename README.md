@@ -49,3 +49,7 @@ Thanks to [NotJustHack](https://www.notjusthack.com/) for providing the platform
 ## 🌍 Connect. Play. Enjoy.
 Playa is your one-stop app for making sports fun and accessible for everyone.
 
+
+<p align="center">
+  <img alt="Playa Banner" src="https://raw.githubusercontent.com/Supsource/playa/refs/heads/main/medias/PlayaBanner.png?token=GHSAT0AAAAAACYQFB3XP4ULVYOFRSVWL446Z3RUQJQ">
+</p>

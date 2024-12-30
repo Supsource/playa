@@ -48,7 +48,7 @@ const PaymentScreen = () => {
   
       if (response.status === 200) {
         console.log('Booking successful:', response.data);
-        navigation.navigate("BOOK"); // Navigate to the home page
+        navigation.navigate("Main"); // Navigate to the home page
       } else {
         console.error('Booking failed:', response.data.message);
       }

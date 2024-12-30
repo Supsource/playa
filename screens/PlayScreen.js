@@ -66,6 +66,22 @@ const PlayScreen = () => {
   };
 
   console.log(upcomingGames);
+  useEffect(() => {
+    if (userId) {
+      fetchUser();
+    }
+  }, [userId]);
+  const fetchUser = async () => {
+    try {
+      const response = await axios.get(`http://localhost:3000/user/${userId}`);
+      setUser(response.data);
+    } catch (error) {
+      console.error('Error fetching user data:', error);
+      if (error.response) {
+        console.error('Response data:', error.response.data);
+      }
+    }
+  };
   return (
     <SafeAreaView>
       <View style={{padding: 12, backgroundColor: '#223537'}}>
@@ -85,12 +101,16 @@ const PlayScreen = () => {
             <Ionicons name="chatbox-outline" size={24} color="white" />
             <Ionicons name="notifications-outline" size={24} color="white" />
 
-            <Image
-              style={{width: 30, height: 30, borderRadius: 15}}
-              source={{
-                uri: 'https://avatars.githubusercontent.com/u/72860690?v=4',
-              }}
-            />
+            <View>
+                        {user?.image ? (
+                          <Image
+                            style={{ width: 30, height: 30, borderRadius: 15 }}
+                            source={{ uri: user.image }}
+                          />
+                        ) : (
+                          <Ionicons name="person-circle-outline" size={30} color="black" />
+                        )}
+                      </View>
           </View>
         </View>
         <View

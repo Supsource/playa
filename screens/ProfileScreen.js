@@ -1,11 +1,74 @@
-import {StyleSheet, Text, View, SafeAreaView, ScrollView} from 'react-native';
-import React from 'react';
+import {
+  StyleSheet,
+  Text,
+  View,
+  SafeAreaView,
+  ScrollView,
+  Pressable,
+  Alert,
+  Linking,
+} from 'react-native';
+import React, {useContext} from 'react';
 import Ionicons from 'react-native-vector-icons/Ionicons';
 import Entypo from 'react-native-vector-icons/Entypo';
 import AntDesign from 'react-native-vector-icons/AntDesign';
 import MaterialIcons from 'react-native-vector-icons/MaterialIcons';
 import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons';
+import {AuthContext} from '../AuthContext';
+import AsyncStorage from '@react-native-async-storage/async-storage';
+import {useNavigation} from '@react-navigation/native';
+
 const ProfileScreen = () => {
+  const {setToken, setUserId} = useContext(AuthContext);
+  const navigation = useNavigation();
+
+  const clearAuthToken = async () => {
+    Alert.alert('Confirm Logout', 'Are you sure you want to logout?', [
+      {
+        text: 'Cancel',
+        style: 'cancel',
+      },
+      {
+        text: 'Logout',
+        style: 'destructive',
+        onPress: async () => {
+          try {
+            await AsyncStorage.removeItem('token');
+            setToken('');
+            setUserId('');
+            navigation.replace('Start');
+          } catch (error) {
+            console.error('Error clearing auth token:', error);
+          }
+        },
+      },
+    ]);
+  };
+
+  const handleDeleteAccount = () => {
+    Alert.alert('Confirm Delete', 'Are you sure you want to delete your account?', [
+      {
+        text: 'Cancel',
+        style: 'cancel',
+      },
+      {
+        text: 'Delete',
+        style: 'destructive',
+        onPress: async () => {
+          try {
+            Linking.openURL('www.snaazr.com');
+            await AsyncStorage.removeItem('token');
+            setToken('');
+            setUserId('');
+            navigation.replace('Start');
+          } catch (error) {
+            console.error('Error during account deletion:', error);
+          }
+        },
+      },
+    ]);
+  };
+
   return (
     <SafeAreaView style={{paddingTop: Platform.OS === 'android' ? 35 : 0}}>
       <ScrollView>
@@ -128,11 +191,7 @@ const ProfileScreen = () => {
                   justifyContent: 'center',
                   alignItems: 'center',
                 }}>
-                <MaterialIcons
-                  name="security"
-                  size={24}
-                  color={'green'}
-                />
+                <MaterialIcons name="security" size={24} color={'green'} />
               </View>
 
               <View style={{}}>
@@ -257,11 +316,7 @@ const ProfileScreen = () => {
                   justifyContent: 'center',
                   alignItems: 'center',
                 }}>
-                <MaterialIcons
-                  name="support"
-                  size={24}
-                  color={'green'}
-                />
+                <MaterialIcons name="support" size={24} color={'green'} />
               </View>
 
               <View style={{}}>
@@ -271,13 +326,12 @@ const ProfileScreen = () => {
               </View>
             </View>
 
-
             <View
               style={{height: 1, borderColor: '#E0E0E0', borderWidth: 0.5}}
             />
 
-
-            <View
+            <Pressable
+              onPress={clearAuthToken}
               style={{
                 flexDirection: 'row',
                 alignItems: 'center',
@@ -294,17 +348,41 @@ const ProfileScreen = () => {
                   justifyContent: 'center',
                   alignItems: 'center',
                 }}>
-                <MaterialIcons
-                  name="logout"
-                  size={24}
-                  color={'green'}
-                />
+                <MaterialIcons name="logout" size={24} color={'green'} />
               </View>
 
               <View style={{}}>
                 <Text style={{fontSize: 16, fontWeight: '500'}}>Logout</Text>
               </View>
-            </View>
+            </Pressable>
+            <View
+              style={{height: 1, borderColor: '#E0E0E0', borderWidth: 0.5}}
+            />
+            <Pressable
+              onPress={handleDeleteAccount}
+              style={{
+                flexDirection: 'row',
+                alignItems: 'center',
+                gap: 10,
+                marginTop: 15,
+                marginBottom: 10,
+              }}>
+              <View
+                style={{
+                  width: 48,
+                  height: 48,
+                  borderRadius: 24,
+                  backgroundColor: '#E0E0E0',
+                  justifyContent: 'center',
+                  alignItems: 'center',
+                }}>
+                <MaterialIcons name="delete" size={24} color={'green'} />
+              </View>
+
+              <View style={{}}>
+                <Text style={{fontSize: 16, fontWeight: '500'}}>Delete Account</Text>
+              </View>
+            </Pressable>
           </View>
         </View>
       </ScrollView>

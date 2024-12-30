@@ -66,7 +66,7 @@ const VenueInfoScreen = () => {
               <View style={{flexDirection: 'row'}}>
                 {[0, 0, 0, 0, 0].map((en, i) => (
                   <FontAwesome
-                    // key={`${food.id}-${i}`}
+                    key={`star-${i}`} 
                     style={{paddingHorizontal: 3}}
                     name={
                       i < Math.floor(route.params.rating) ? 'star' : 'star-o'
@@ -120,6 +120,7 @@ const VenueInfoScreen = () => {
           <ScrollView showsHorizontalScrollIndicator={false} horizontal>
             {route.params.sportsAvailable.map((item, index) => (
               <View
+                key={`sport-${index}`}
                 style={{
                   borderColor: '#686868',
                   margin: 10,

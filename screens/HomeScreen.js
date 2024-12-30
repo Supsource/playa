@@ -182,8 +182,12 @@ const HomeScreen = ({ items }) => {
             <Text style={{fontSize: 15, fontWeight: "500"}}>SpotLight</Text>
             <ScrollView horizontal showsHorizontalScrollIndicator={false}>
               {data?.map((item, index) => (
-                <ImageBackground imageStyle={{borderRadius: 10}} style={{width:220, height: 280, resizeMode: "contain", marginRight: 10, marginVertical: 15}} source={{uri:item?.image}}>
-
+                <ImageBackground
+                  key={item.id} 
+                  imageStyle={{borderRadius: 10}}
+                  style={{width:220, height: 280, resizeMode: "contain", marginRight: 10, marginVertical: 15}}
+                  source={{uri:item?.image}}
+                >
                 </ImageBackground>
               ))}
             </ScrollView>

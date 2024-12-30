@@ -19,25 +19,11 @@ import {useRef} from 'react';
 import {AuthContext} from '../AuthContext';
 
 const HomeScreen = () => {
-  // const clearAuthToken = async () => {
-  //   try{
-  //     await AsyncStorage.removeItem("token");
-
-  //     setToken("");
-  //   } catch(error){
-  //     console.log("Error",error)
-  //   }
-  // }
-  // useEffect(() => {
-  //   clearAuthToken();
-  // },[])
   const navigation = useNavigation();
-  // const [userId, setUserId] = useState('');
   const {userId, setUserId} = useContext(AuthContext);
-
   const [upcomingGames, setUpcomingGames] = useState([]);
-
   const [user, setUser] = useState('');
+
   useLayoutEffect(() => {
     return navigation.setOptions({
       headerTitle: '',
@@ -77,6 +63,7 @@ const HomeScreen = () => {
       ),
     });
   }, [user]);
+
   const data = [
     {
       id: '10',
@@ -404,6 +391,7 @@ const HomeScreen = () => {
           <ScrollView horizontal showsHorizontalScrollIndicator={false}>
             {data?.map((item, index) => (
               <ImageBackground
+                key={item.id} 
                 imageStyle={{borderRadius: 10}}
                 style={{
                   width: 220,

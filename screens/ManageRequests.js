@@ -32,7 +32,7 @@ import {
           userId: userId,
         };
         console.log(user);
-        const response = await axios.post('http://localhost:3000/accept', user);
+        const response = await axios.post('https://playa-z9fh.onrender.com/accept', user);
   
         if (response.status === 200) {
           Alert.alert('Success', 'Request accepted');
@@ -57,7 +57,7 @@ import {
     const fetchRequests = async () => {
       try {
         const response = await axios.get(
-          `http://localhost:3000/games/${gameId}/requests`,
+          `https://playa-z9fh.onrender.com/games/${gameId}/requests`,
         );
         setRequests(response.data);
       } catch (error) {
@@ -73,7 +73,7 @@ import {
     const fetchPlayers = async () => {
       try {
         const response = await axios.get(
-          `http://localhost:3000/game/${gameId}/players`,
+          `https://playa-z9fh.onrender.com/game/${gameId}/players`,
         );
         setPlayers(response.data);
       } catch (error) {
@@ -171,6 +171,7 @@ import {
                 {/* {route?.params?.requests?.map((item, index) => ( */}
                 {requests?.map((item, index) => (
                   <Pressable
+                    key={index} // Add key prop
                     style={{
                       padding: 10,
                       backgroundColor: 'white',
@@ -304,6 +305,7 @@ import {
                 <View style={{}}>
                   {players?.map((item, index) => (
                     <Pressable
+                      key={index} 
                       style={{
                         marginVertical: 10,
                         flexDirection: 'row',

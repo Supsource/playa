@@ -38,7 +38,7 @@ const PlayScreen = () => {
 
   const fetchGames = async () => {
     try {
-      const response = await axios.get('http://localhost:3000/games');
+      const response = await axios.get('https://playa-z9fh.onrender.com/games');
       setGames(response.data);
     } catch (error) {
       console.error('Failed to fetch games:', error);
@@ -57,7 +57,7 @@ const PlayScreen = () => {
     try {
       console.log('myysdyfydyfdf', userId);
       const response = await axios.get(
-        `http://localhost:3000/upcoming?userId=${userId}`,
+        `https://playa-z9fh.onrender.com/upcoming?userId=${userId}`,
       );
       setUpcomingGames(response.data);
     } catch (error) {
@@ -73,7 +73,7 @@ const PlayScreen = () => {
   }, [userId]);
   const fetchUser = async () => {
     try {
-      const response = await axios.get(`http://localhost:3000/user/${userId}`);
+      const response = await axios.get(`https://playa-z9fh.onrender.com/user/${userId}`);
       setUser(response.data);
     } catch (error) {
       console.error('Error fetching user data:', error);

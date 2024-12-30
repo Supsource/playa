@@ -31,7 +31,7 @@ const BookScreen = () => {
 
   const fetchUser = async () => {
     try {
-      const response = await axios.get(`http://localhost:3000/user/${userId}`);
+      const response = await axios.get(`https://playa-z9fh.onrender.com/user/${userId}`);
       setUser(response.data);
     } catch (error) {
       console.error('Error fetching user data:', error);
@@ -44,7 +44,7 @@ const BookScreen = () => {
   useEffect(() => {
     const fetchVenues = async () => {
       try {
-        const response = await axios.get('http://localhost:3000/venues');
+        const response = await axios.get('https://playa-z9fh.onrender.com/venues');
         setVenues(response.data);
       } catch (error) {
         console.error('Failed to fetch venues:', error);

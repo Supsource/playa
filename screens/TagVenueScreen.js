@@ -22,7 +22,7 @@ import {
     useEffect(() => {
       const fetchVenues = async () => {
         try {
-          const response = await axios.get('http://localhost:3000/venues');
+          const response = await axios.get('https://playa-z9fh.onrender.com/venues');
           setVenues(response.data);
         } catch (error) {
           console.error('Failed to fetch venues:', error);

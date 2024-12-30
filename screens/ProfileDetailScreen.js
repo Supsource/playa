@@ -17,7 +17,7 @@ const ProfileDetailScreen = () => {
   const fetchUser = async () => {
     try {
       console.log('mysysy', userId);
-      const response = await axios.get(`http://localhost:3000/user/${userId}`);
+      const response = await axios.get(`https://playa-z9fh.onrender.com/user/${userId}`);
       setUser(response.data);
     } catch (error) {
       console.error('Error fetching user data:', error);

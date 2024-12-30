@@ -65,7 +65,7 @@ const PreFinalScreen = () => {
   const registerUser = async () => {
     try {
       const response = await axios
-        .post('http://localhost:3000/register', userData)
+        .post('https://playa-z9fh.onrender.com/register', userData)
         .then(response => {
           console.log(response);
           const token = response.data.token;

@@ -115,7 +115,7 @@ const CreateActivity = () => {
       console.log('Sending game data:', gameData); // Log the game data
   
       // Send the POST request to create the game
-      const response = await axios.post('http://localhost:3000/creategame', gameData);
+      const response = await axios.post('https://playa-z9fh.onrender.com/creategame', gameData);
   
       console.log('Game created:', response.data);
   

@@ -56,6 +56,7 @@ const PlayersScreen = () => {
       <View style={{padding: 12}}>
         {route?.params?.players?.map((item, index) => (
           <Pressable
+            key={index} 
             style={{
               marginVertical: 10,
               flexDirection: 'row',

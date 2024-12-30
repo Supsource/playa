@@ -44,7 +44,7 @@ const GameSetUpScreen = () => {
   const sendJoinRequest = async gameId => {
     try {
       const response = await axios.post(
-        `http://localhost:3000/games/${gameId}/request`,
+        `https://playa-z9fh.onrender.com/games/${gameId}/request`,
         {
           userId,
           comment,
@@ -78,7 +78,7 @@ const GameSetUpScreen = () => {
   const fetchRequests = async () => {
     try {
       const response = await axios.get(
-        `http://localhost:3000/games/${gameId}/requests`,
+        `https://playa-z9fh.onrender.com/games/${gameId}/requests`,
       );
       setRequests(response.data);
     } catch (error) {
@@ -95,7 +95,7 @@ const GameSetUpScreen = () => {
   const fetchPlayers = async () => {
     try {
       const response = await axios.get(
-        `http://localhost:3000/game/${gameId}/players`,
+        `https://playa-z9fh.onrender.com/game/${gameId}/players`,
       );
       setPlayers(response.data);
     } catch (error) {
@@ -110,7 +110,7 @@ const GameSetUpScreen = () => {
   useEffect(() => {
     const fetchVenues = async () => {
       try {
-        const response = await axios.get('http://localhost:3000/venues');
+        const response = await axios.get('https://playa-z9fh.onrender.com/venues');
         setVenues(response.data);
       } catch (error) {
         console.error('Failed to fetch venues:', error);
@@ -134,7 +134,7 @@ const GameSetUpScreen = () => {
     try {
       // Call the backend endpoint to toggle the matchFull status
       const response = await axios.post(
-        'http://localhost:3000/toggle-match-full',
+        'https://playa-z9fh.onrender.com/toggle-match-full',
         {gameId},
       );
 

@@ -639,13 +639,14 @@ const GameSetUpScreen = () => {
               backgroundColor: 'white',
               padding: 12,
               borderRadius: 6,
+              color: 'white'
             }}>
             <View>
-              <Text style={{fontSize: 18, fontWeight: '600'}}>Queries (0)</Text>
+              <Text style={{fontSize: 18, fontWeight: '600',color: 'white' }}>Queries (0)</Text>
 
               <View style={{marginVertical: 12}}>
                 <Text
-                  style={{color: 'gray', fontSize: 15, textAlign: 'center'}}>
+                  style={{color: 'white', fontSize: 15, textAlign: 'center'}}>
                   There are no queries yet! Queries sent by players will be
                   shown here
                 </Text>
@@ -705,7 +706,7 @@ const GameSetUpScreen = () => {
               paddingVertical: 12,
               backgroundColor: '#E8E8E8',
               position: 'absolute',
-              bottom: 60, // Adjusted for higher positioning
+              bottom: 60, 
               left: 15,
               right: 15,
             }}>

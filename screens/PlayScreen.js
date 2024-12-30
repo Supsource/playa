@@ -21,7 +21,6 @@ import Game from '../components/Game';
 import {AuthContext} from '../AuthContext';
 import UpComingGame from '../components/UpComingGame';
 
-
 const PlayScreen = () => {
   const [option, setOption] = useState('My Sports');
   const [sport, setSport] = useState('Badminton');
@@ -73,7 +72,9 @@ const PlayScreen = () => {
   }, [userId]);
   const fetchUser = async () => {
     try {
-      const response = await axios.get(`https://playa-z9fh.onrender.com/user/${userId}`);
+      const response = await axios.get(
+        `https://playa-z9fh.onrender.com/user/${userId}`,
+      );
       setUser(response.data);
     } catch (error) {
       console.error('Error fetching user data:', error);
@@ -102,15 +103,21 @@ const PlayScreen = () => {
             <Ionicons name="notifications-outline" size={24} color="white" />
 
             <View>
-                        {user?.image ? (
-                          <Image
-                            style={{ width: 30, height: 30, borderRadius: 15 }}
-                            source={{ uri: user.image }}
-                          />
-                        ) : (
-                          <Ionicons name="person-circle-outline" size={30} color="black" />
-                        )}
-                      </View>
+              {user?.image ? (
+                <Pressable onPress={() => navigation.navigate('ProfileDetail')}>
+                  <Image
+                    style={{width: 30, height: 30, borderRadius: 15}}
+                    source={{uri: user.image}}
+                  />
+                </Pressable>
+              ) : (
+                <Ionicons
+                  name="person-circle-outline"
+                  size={30}
+                  color="black"
+                />
+              )}
+            </View>
           </View>
         </View>
         <View

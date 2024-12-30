@@ -80,10 +80,12 @@ const BookScreen = () => {
           <Ionicons name="notifications-outline" size={24} color="black" />
           <View>
             {user?.image ? (
+              <Pressable onPress={() => navigation.navigate('ProfileDetail')}>
               <Image
                 style={{ width: 30, height: 30, borderRadius: 15 }}
                 source={{ uri: user.image }}
               />
+              </Pressable>
             ) : (
               <Ionicons name="person-circle-outline" size={30} color="black" />
             )}

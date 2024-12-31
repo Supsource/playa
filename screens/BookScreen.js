@@ -105,7 +105,7 @@ const BookScreen = () => {
         }}
       >
         <TextInput placeholder="Search For Venues" />
-        <Ionicons name="search" size={24} color="gray" />
+        <Ionicons name="search" size={24} color="black" />
       </View>
 
       <Pressable

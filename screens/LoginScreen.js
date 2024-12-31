@@ -8,6 +8,7 @@ import {
   Pressable,
   Image,
   ScrollView,
+  ActivityIndicator,
 } from 'react-native';
 import React, {useContext, useEffect, useState} from 'react';
 import {useNavigation} from '@react-navigation/native';
@@ -18,6 +19,7 @@ import axios from 'axios';
 const LoginScreen = () => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
+  const [isLoading, setIsLoading] = useState(false);
   const navigation = useNavigation();
   const {token, setToken} = useContext(AuthContext);
   useEffect(() => {
@@ -26,6 +28,7 @@ const LoginScreen = () => {
     }
   }, [token, navigation]);
   const handleLogin = () => {
+    setIsLoading(true);
     const user = {
       email: email,
       password: password,
@@ -36,10 +39,22 @@ const LoginScreen = () => {
       console.log("token",token)
       AsyncStorage.setItem('token', token);
       setToken(token);
+      setIsLoading(false);
+    }).catch(() => {
+      setIsLoading(false);
     });
   };
+
+  if (isLoading) {
+    return (
+      <SafeAreaView style={{flex: 1, justifyContent: 'center', alignItems: 'center', backgroundColor: 'white'}}>
+        <ActivityIndicator size="large" color="green" />
+      </SafeAreaView>
+    );
+  }
+
   return (
-      <SafeAreaView style={{flex: 1, backgroundColor: 'white', }}>
+    <SafeAreaView style={{flex: 1, backgroundColor: 'white', }}>
       <View style={{padding: 10, alignItems: 'center'}}>
         <KeyboardAvoidingView>
           <View

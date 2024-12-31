@@ -11,19 +11,22 @@ import {
   import Ionicons from 'react-native-vector-icons/Ionicons';
   import AntDesign from 'react-native-vector-icons/AntDesign';
   import {useState} from 'react';
-  import {useRoute} from '@react-navigation/native';
+  import {useRoute, useNavigation} from '@react-navigation/native';
   import axios from 'axios';
   import Entypo from 'react-native-vector-icons/Entypo';
   
   const ManageRequests = () => {
     const [option, setOption] = useState('Requests');
     const route = useRoute();
+      const navigation = useNavigation();
+    
   
     const userId = route?.params?.userId;
     const gameId = route?.params?.gameId;
   
     console.log(userId);
     console.log(gameId);
+    
   
     const acceptRequest = async userId => {
       try {
@@ -92,7 +95,9 @@ import {
               gap: 5,
               justifyContent: 'space-between',
             }}>
-            <Ionicons name="arrow-back" size={24} color="white" />
+            <Ionicons
+            onPress={() => navigation.goBack()}
+            name="arrow-back" size={24} color="white" />
             <AntDesign name="plussquareo" size={24} color="white" />
           </View>
   

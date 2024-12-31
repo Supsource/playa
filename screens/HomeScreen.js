@@ -28,7 +28,7 @@ const HomeScreen = () => {
       headerTitle: '',
       headerLeft: () => (
         <View style={{flexDirection: 'row', alignItems: 'center', gap: 10}}>
-          <Text style={{marginLeft: 15}}>Kolkata</Text>
+          <Text style={{marginLeft: 15, fontWeight:'500'}}>bangalore 📍</Text>
         </View>
       ),
       headerRight: () => (

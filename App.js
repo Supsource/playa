@@ -5,7 +5,7 @@
  * @format
  */
 
-import React from 'react';
+import React, {useState, useEffect} from 'react';
 import {
   SafeAreaView,
   ScrollView,
@@ -27,6 +27,7 @@ import AntDesign from 'react-native-vector-icons/AntDesign';
 import StackNavigator from './navigation/StackNavigator';
 import {AuthProvider} from './AuthContext';
 import {ModalPortal} from 'react-native-modals';
+import SplashScreen from './screens/SplashScreen';
 
 function Section({children, title}) {
   const isDarkMode = useColorScheme() === 'dark';
@@ -56,10 +57,21 @@ function Section({children, title}) {
 
 function App() {
   const isDarkMode = useColorScheme() === 'dark';
+  const [isLoading, setIsLoading] = useState(true);
+
+  useEffect(() => {
+    setTimeout(() => {
+      setIsLoading(false);
+    }, 3000); // Show splash screen for 3 seconds
+  }, []);
 
   const backgroundStyle = {
     backgroundColor: isDarkMode ? Colors.darker : Colors.lighter,
   };
+
+  if (isLoading) {
+    return <SplashScreen />;
+  }
 
   return (
     <AuthProvider>

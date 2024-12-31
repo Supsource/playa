@@ -5,6 +5,7 @@ import {
   Text,
   TextInput,
   View,
+  ActivityIndicator,
 } from 'react-native';
 import React, {useState, useEffect} from 'react';
 import {useNavigation} from '@react-navigation/native';
@@ -12,6 +13,7 @@ import {saveRegistrationProgress, getRegistrationProgress} from '../registration
 
 const RegisterScreen = () => {
   const [email, setEmail] = useState(''); 
+  const [isLoading, setIsLoading] = useState(false);
   const navigation = useNavigation();
 
   useEffect(() => {
@@ -24,10 +26,23 @@ const RegisterScreen = () => {
 
   const next = () => {
     if ((email || '').trim() !== '') {
-      saveRegistrationProgress('Register', { email });
+      setIsLoading(true);
+      saveRegistrationProgress('Register', { email }).then(() => {
+        setIsLoading(false);
+        navigation.navigate('Password');
+      }).catch(() => {
+        setIsLoading(false);
+      });
     }
-    navigation.navigate('Password');
   };
+
+  if (isLoading) {
+    return (
+      <SafeAreaView style={{flex: 1, justifyContent: 'center', alignItems: 'center', backgroundColor: 'white'}}>
+        <ActivityIndicator size="large" color="green" />
+      </SafeAreaView>
+    );
+  }
 
   return (
     <SafeAreaView style={{ flex: 1}}>

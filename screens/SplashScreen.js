@@ -5,7 +5,7 @@ const SplashScreen = () => {
   return (
     <SafeAreaView
       style={{
-        backgroundColor: '#52cc4b',
+        backgroundColor: 'white',
         flex: 1,
         justifyContent: 'center',
         alignItems: 'center',
@@ -14,7 +14,7 @@ const SplashScreen = () => {
         <Image
           style={{width: 110, height: 60, resizeMode: 'contain'}}
           source={{
-            uri: 'https://playo-website.gumlet.io/playo-website-v2/logos-icons/new-logo-playo.png?q=50',
+            uri: 'https://pbs.twimg.com/media/GgB5gqTWIAAyoVk?format=png&name=240x240',
           }}
         />
       </View>

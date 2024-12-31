@@ -39,7 +39,7 @@ const LoginScreen = () => {
     });
   };
   return (
-      <SafeAreaView style={{flex: 1, backgroundColor: 'white', paddingTop: Platform.OS === 'android' ? 35 : 0}}>
+      <SafeAreaView style={{flex: 1, backgroundColor: 'white', }}>
       <View style={{padding: 10, alignItems: 'center'}}>
         <KeyboardAvoidingView>
           <View

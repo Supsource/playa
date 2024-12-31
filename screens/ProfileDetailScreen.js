@@ -131,7 +131,6 @@ const styles = StyleSheet.create({
     flex: 1,
     backgroundColor: '#f8f9fa',
     padding: 16,
-    paddingTop: Platform.OS === 'android' ? 35 : 0,
   },
   loaderContainer: {
     flex: 1,

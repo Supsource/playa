@@ -23,7 +23,7 @@ const PasswordScreen = () => {
     navigation.navigate('Name')
   }
   return (
-    <SafeAreaView style={{flex: 1, backgroundColor: 'white', paddingTop: Platform.OS === 'android' ? 35 : 0}}>
+    <SafeAreaView style={{flex: 1, backgroundColor: 'white'}}>
       <View style={{marginTop: 90, marginHorizontal: 20}}>
         <View style={{flexDirection: 'row', alignItems: 'center'}}>
           <View

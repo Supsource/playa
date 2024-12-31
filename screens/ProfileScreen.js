@@ -70,7 +70,7 @@ const ProfileScreen = () => {
   };
 
   return (
-    <SafeAreaView style={{paddingTop: Platform.OS === 'android' ? 35 : 0}}>
+    <SafeAreaView>
       <ScrollView>
         <View style={{padding: 12}}>
           <View

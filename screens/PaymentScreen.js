@@ -58,7 +58,7 @@ const PaymentScreen = () => {
   };
   return (
     <>
-    <ScrollView style={{marginTop:50, paddingTop: Platform.OS === 'android' ? 35 : 0}}>
+    <ScrollView style={{marginTop:50}}>
       <View style={{ padding: 15 }}>
         <Text style={{ fontSize: 23, fontWeight: "500", color: "green" }}>
           {route.params.selectedSport}

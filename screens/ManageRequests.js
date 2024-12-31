@@ -83,7 +83,7 @@ import {
   
     console.log('dfdfdfd', route?.params);
     return (
-      <SafeAreaView style={{paddingTop: Platform.OS === 'android' ? 35 : 0}}>
+      <SafeAreaView>
         <View style={{padding: 12, backgroundColor: '#223536'}}>
           <View
             style={{

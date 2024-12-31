@@ -36,7 +36,7 @@ const NameScreen = () => {
   };
   return (
     <>
-      <SafeAreaView style={{flex: 1, backgroundColor: 'white', paddingTop: Platform.OS === 'android' ? 35 : 0}}>
+      <SafeAreaView style={{flex: 1, backgroundColor: 'white',}}>
         <View style={{marginHorizontal: 10}}>
           <Ionicons
             onPress={() => navigation.goBack()}

@@ -58,7 +58,6 @@ import {
         style={{
           flex: 1,
           backgroundColor: 'white',
-          paddingTop: Platform.OS === 'android' ? 35 : 0,
         }}
       >
         <View

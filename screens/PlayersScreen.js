@@ -14,7 +14,7 @@ import Entypo from 'react-native-vector-icons/Entypo';
 const PlayersScreen = () => {
   const route = useRoute();
   return (
-    <SafeAreaView style={{paddingTop: Platform.OS === 'android' ? 35 : 0}}>
+    <SafeAreaView>
       <View
         style={{
           padding: 10,

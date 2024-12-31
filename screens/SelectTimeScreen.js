@@ -112,7 +112,7 @@ const SelectTimeScreen = () => {
   }, [navigation]);
 
   return (
-    <SafeAreaView style={{paddingTop: Platform.OS === 'android' ? 35 : 0}}>
+    <SafeAreaView>
     <View style={styles.container}>
       <View style={styles.timeSlotsContainer}>
         {times.map((item) => (

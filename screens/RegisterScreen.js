@@ -30,7 +30,7 @@ const RegisterScreen = () => {
   };
 
   return (
-    <SafeAreaView style={{ flex: 1 , paddingTop: Platform.OS === 'android' ? 35 : 0}}>
+    <SafeAreaView style={{ flex: 1}}>
       <View style={{ padding: 13 }}>
         <Text style={{ fontSize: 16, fontWeight: '500' }}>
           You're almost there!

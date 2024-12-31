@@ -132,10 +132,10 @@ const StartScreen = () => {
         </Text>
       </Pressable>
       <View style={{ justifyContent: 'center', alignItems: 'center', marginTop: 25 }}>
-        <Image
+        {/* <Image
           style={{ width: 110, height: 60, resizeMode: 'contain' }}
           source={{ uri: 'https://raw.githubusercontent.com/Supsource/playa/refs/heads/main/medias/Playa.png?token=GHSAT0AAAAAACYQFB3XRR4WXACTKWAK6TK2Z3O4LFA' }}
-        />
+        /> */}
       </View>
     </SafeAreaView>
     <View style={styles.footerContainer}>
@@ -152,7 +152,6 @@ export default StartScreen;
 const styles = StyleSheet.create({
   footerContainer: {
     padding: 10,
-    // backgroundColor: 'white',
     marginTop: 'auto',
     justifyContent: 'center',
     alignItems: 'center',
@@ -169,6 +168,6 @@ const styles = StyleSheet.create({
   buttonText: {
     fontSize: 16,
     color: 'white',
-    fontWeight: 'bold',
+    fontWeight: 'bold'
   },
 });

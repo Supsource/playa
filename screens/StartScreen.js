@@ -112,11 +112,11 @@ const StartScreen = () => {
           const user = users[index % users.length];
           return (
             <Marker key={user.id} coordinate={point}>
-              <View style={{ justifyContent: 'center', alignItems: 'center' }}>
-                <Image
+              <View style={styles.markerContainer}>
+                {/* <Image
                   source={{ uri: user.image }}
-                  style={{ width: 70, height: 70, resizeMode: 'cover', borderRadius: 35 }}
-                />
+                  style={styles.markerImage}
+                /> */}
               </View>
             </Marker>
           );
@@ -131,12 +131,6 @@ const StartScreen = () => {
           Already have an account? <Text style={{color: 'blue'}}>Sign in</Text>
         </Text>
       </Pressable>
-      <View style={{ justifyContent: 'center', alignItems: 'center', marginTop: 25 }}>
-        {/* <Image
-          style={{ width: 110, height: 60, resizeMode: 'contain' }}
-          source={{ uri: 'https://raw.githubusercontent.com/Supsource/playa/refs/heads/main/medias/Playa.png?token=GHSAT0AAAAAACYQFB3XRR4WXACTKWAK6TK2Z3O4LFA' }}
-        /> */}
-      </View>
     </SafeAreaView>
     <View style={styles.footerContainer}>
       <Pressable onPress={() => navigation.navigate("Register")} style={styles.button}>
@@ -150,6 +144,19 @@ const StartScreen = () => {
 export default StartScreen;
 
 const styles = StyleSheet.create({
+  markerContainer: {
+    justifyContent: 'center',
+    alignItems: 'center',
+    width: 70,
+    height: 70,
+    borderRadius: 35,
+    overflow: 'hidden',
+  },
+  markerImage: {
+    width: '100%',
+    height: '100%',
+    resizeMode: 'cover',
+  },
   footerContainer: {
     padding: 10,
     marginTop: 'auto',

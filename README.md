@@ -4,6 +4,17 @@
   
 Playa is a mobile application designed to make sports accessible and fun by helping people find players nearby. Whether you're starting a game, joining an existing one, or booking a venue, Playa simplifies the process. Built in less than a month for the **[NotJustHack](https://www.notjusthack.com/)** hackathon, it’s an innovative solution for connecting sports enthusiasts.
 
+
+Playa is now **available on the Google Play Store**!  
+Experience the joy of sports by connecting with players around you, joining games, or booking venues effortlessly.  
+
+## 📲 Download Now  
+<a href="https://play.google.com/store/apps/details?id=com.playaa">
+  <img alt="Get it on Google Play" src="https://play.google.com/intl/en_us/badges/images/generic/en_badge_web_generic.png" height="80px"/>
+</a>  
+
+
+
 ## 🌟 Why Playa?
 * **Easy to Use :** A simple and friendly interface to help you find players and games effortlessly. </br>
 * **Flexible Options :** Create your own game or join one that’s already happening nearby. </br>

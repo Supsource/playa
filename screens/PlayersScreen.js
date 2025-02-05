@@ -7,12 +7,13 @@ import {
   Image,
 } from 'react-native';
 import React from 'react';
-import {useRoute} from '@react-navigation/native';
+import {useNavigation, useRoute} from '@react-navigation/native';
 import Ionicons from 'react-native-vector-icons/Ionicons';
 import Entypo from 'react-native-vector-icons/Entypo';
 
 const PlayersScreen = () => {
   const route = useRoute();
+  const navigation = useNavigation();
   return (
     <SafeAreaView>
       <View
@@ -27,7 +28,7 @@ const PlayersScreen = () => {
             alignItems: 'center',
             justifyContent: 'space-between',
           }}>
-          <Ionicons name="arrow-back" size={24} color="white" />
+          <Ionicons onPress={() => navigation.goBack()} name="arrow-back" size={24} color="white" />
 
           <View style={{flexDirection: 'row', alignItems: 'center', gap: 10}}>
             <Entypo name="share" size={24} color="white" />

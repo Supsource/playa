@@ -82,7 +82,7 @@ import {
                 //backgroundColor: 'rgba(255, 255, 255, 0.1)',
               }}
             >
-              <Ionicons name="arrow-back" size={24} color='white' />
+              <Ionicons onPress={() => navigation.goBack()} name="arrow-back" size={24} color='white' />
             </Pressable>
   
             <Text style={{ fontSize: 15, fontWeight: '500', color: 'white' }}>

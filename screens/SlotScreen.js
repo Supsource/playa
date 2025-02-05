@@ -23,6 +23,9 @@ import {
     const route = useRoute();
     const {place = {}, sports = []} = route.params || {};
   
+    // Ensure sports array is not empty before accessing its properties
+    const initialSport = sports.length > 0 ? sports[0].name : '';
+  
     // console.log(today)
     const [selectedDate, setSelectedDate] = useState(today);
     const [bookingStatus, setBookingStatus] = useState(false);
@@ -33,9 +36,7 @@ import {
     //   console.log(paymentStatus);
   
     console.log(route.params);
-    const [selectedSport, setselectedSport] = useState(
-      route.params.sports[0].name,
-    );
+    const [selectedSport, setselectedSport] = useState(initialSport);
     const [duration, setDuration] = useState(60);
     const [price] = route.params.sports
       .filter(item => item.name === selectedSport)
@@ -323,8 +324,14 @@ import {
         // Check if the booking is on the selected date
         if (booking.date !== selectedDate) return false;
     
+        // Ensure booking.time is defined before calling split
+        if (!booking.time) return false;
+    
         // Extract the start and end times from the booking time range
         const [startTime, endTime] = booking.time.split(' - ');
+    
+        // Ensure time, startTime, and endTime are defined before calling split
+        if (!time || !startTime || !endTime) return false;
     
         // Get the hour portion of the times to compare
         let chosenHour = parseInt(time.split(':')[0], 10);
@@ -335,9 +342,6 @@ import {
         const lowerStartTime = startTime.toLowerCase();
         const lowerEndTime = endTime.toLowerCase();
         const lowerChosenTime = time.toLowerCase();
-  
-        console.log("lower",lowerChosenTime)
-        console.log("hihger",lowerEndTime)
     
         // Handle AM/PM for the start time
         if (lowerStartTime.includes('pm') && startHour < 12) startHour += 12;
@@ -380,7 +384,21 @@ import {
       }
     };
     
-  
+    const handleNextPress = () => {
+      if (!selectedSport || !selectedDate || !selectedTime || !selectedCourt.length) {
+        Alert.alert('Incomplete Selection', 'Please select all required options.');
+        return;
+      }
+      navigation.navigate('Payment', {
+        selectedCourt: selectedCourt,
+        selectedSport: selectedSport,
+        price: price,
+        selectedTime: selectedTime,
+        selectedDate: selectedDate,
+        place: route.params.place,
+        gameId: route?.params?.gameId,
+      });
+    };
   
     return (
       <>
@@ -755,17 +773,7 @@ import {
           </ScrollView>
         </SafeAreaView>
         <Pressable
-          onPress={() =>
-            navigation.navigate('Payment', {
-              selectedCourt: selectedCourt,
-              selectedSport: selectedSport,
-              price: price,
-              selectedTime: selectedTime,
-              selectedDate: selectedDate,
-              place: route.params.place,
-              gameId: route?.params?.gameId,
-            })
-          }
+          onPress={handleNextPress}
           style={{
             backgroundColor: '#32CD32',
             padding: 15,

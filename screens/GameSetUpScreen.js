@@ -127,8 +127,8 @@ const GameSetUpScreen = () => {
   console.log('ver', venue);
 
   const [startTime, endTime] = route?.params?.item?.time
-    ?.split(' - ')
-    .map(time => time.trim());
+    ? route.params.item.time.split(' - ').map(time => time.trim())
+    : [null, null];
 
   console.log('comment', route?.params?.item?.matchFull);
 
@@ -192,7 +192,6 @@ const GameSetUpScreen = () => {
               <View
                 style={{
                   padding: 7,
-
                   backgroundColor: 'white',
                   borderRadius: 7,
                   alignSelf: 'flex-start',
@@ -273,7 +272,6 @@ const GameSetUpScreen = () => {
               backgroundColor: 'white',
               padding: 10,
               flexDirection: 'row',
-
               gap: 10,
             }}>
             <MaterialCommunityIcons
@@ -289,7 +287,6 @@ const GameSetUpScreen = () => {
                 style={{
                   marginTop: 6,
                   flexDirection: 'row',
-
                   justifyContent: 'space-between',
                 }}>
                 <Text style={{width: '80%', color: 'gray'}}>
